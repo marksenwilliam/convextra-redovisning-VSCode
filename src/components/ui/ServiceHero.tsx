@@ -16,18 +16,7 @@ export default function ServiceHero({
   breadcrumb,
 }: ServiceHeroProps) {
   return (
-    <header className="relative w-full min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-visible pt-24 bg-[#1a1a1a]">
-      {/* Background Pattern - Bottom Right */}
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] md:w-[500px] md:h-[500px] z-0">
-        <Image
-          src={backgroundImage}
-          alt=""
-          fill
-          className="object-contain object-bottom-right"
-          priority
-        />
-      </div>
-
+    <header className="relative w-full min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden pt-24 bg-[#1a1a1a]">
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         {/* Breadcrumb */}
