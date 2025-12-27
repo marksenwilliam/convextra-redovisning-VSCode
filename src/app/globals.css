@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  /* Background Colors */
+  --background-dark: #1a1a1a;
+  --background-light: #f5f3ef;
+  --background-white: #ffffff;
+  --background-cream: #fffcf8;
+  
+  /* Accent Colors */
+  --accent-gold: #cbbba0;
+  --accent-gold-dark: #8c7b60;
+  --accent-orange: #e09e58;
+  --accent-orange-hover: #d08d48;
+  
+  /* Text Colors */
+  --text-dark: #1a1a1a;
+  --text-gray: #6b7280;
+  --text-gray-light: #9ca3af;
+  
+  /* Border Colors */
+  --border-light: rgba(203, 187, 160, 0.3);
+  --border-lighter: rgba(203, 187, 160, 0.2);
+  
+  /* Selection */
+  --selection-bg: #8c7b60;
+  --selection-text: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background-dark);
+  --color-foreground: #ffffff;
+  --font-sans: var(--font-geist);
+  --font-serif: var(--font-playfair);
+  
+  /* Custom Colors for Tailwind */
+  --color-gold: #cbbba0;
+  --color-gold-dark: #8c7b60;
+  --color-cream: #f5f3ef;
+  --color-dark: #1a1a1a;
+}
+
+body {
+  background: var(--background-dark);
+  color: #ffffff;
+  font-family: var(--font-geist), var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Font Classes */
+.font-geist {
+  font-family: var(--font-geist), sans-serif;
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel), serif;
+}
+
+.font-quicksand {
+  font-family: var(--font-quicksand), sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Aboreto-like styling using Cinzel */
+.font-aboreto {
+  font-family: var(--font-cinzel), serif;
+  letter-spacing: 0.05em;
+}
