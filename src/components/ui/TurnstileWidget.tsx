@@ -17,12 +17,11 @@ declare global {
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
     };
-    onTurnstileLoad?: () => void;
   }
 }
 
 const SITE_KEY = "0x4AAAAAACJamWs0HEPThj6-";
-const TIMEOUT_MS = 10000;
+const SCRIPT_URL = "https://challenges.cloudflare.com/turnstile/v0/api.js";
 
 export default function TurnstileWidget({
   onVerify,
@@ -35,111 +34,115 @@ export default function TurnstileWidget({
   const [status, setStatus] = useState<"loading" | "ready" | "verified" | "error" | "timeout">("loading");
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
+  const initRef = useRef(false);
+
+  // Store callbacks in refs to avoid dependency issues
+  const callbacksRef = useRef({ onVerify, onExpire, onError, onTimeout });
+  callbacksRef.current = { onVerify, onExpire, onError, onTimeout };
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!mounted || !containerRef.current) return;
+    if (!mounted) return;
+    if (initRef.current) return;
+    initRef.current = true;
 
-    let timeoutId: NodeJS.Timeout;
-    let checkInterval: NodeJS.Timeout;
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Timeout fallback (15 seconds)
+    const timeoutId = setTimeout(() => {
+      if (!widgetIdRef.current) {
+        setStatus("timeout");
+        callbacksRef.current.onTimeout?.();
+      }
+    }, 15000);
 
     const renderWidget = () => {
-      if (!window.turnstile || !containerRef.current || widgetIdRef.current) {
-        return;
-      }
+      if (!window.turnstile || !container || widgetIdRef.current) return;
 
       try {
-        console.log("🔄 Rendering Turnstile...");
-        widgetIdRef.current = window.turnstile.render(containerRef.current, {
+        widgetIdRef.current = window.turnstile.render(container, {
           sitekey: SITE_KEY,
           theme: theme,
           callback: (token: string) => {
-            console.log("✅ Verified!");
             setStatus("verified");
-            onVerify(token);
+            callbacksRef.current.onVerify(token);
           },
           "error-callback": () => {
-            console.log("❌ Error");
             setStatus("error");
-            onError?.();
+            callbacksRef.current.onError?.();
           },
           "expired-callback": () => {
-            console.log("⏰ Expired");
             setStatus("ready");
-            widgetIdRef.current = null;
-            onExpire?.();
+            callbacksRef.current.onExpire?.();
           },
         });
         setStatus("ready");
-        console.log("✅ Widget rendered!");
-      } catch (err) {
-        console.error("❌ Render failed:", err);
+      } catch {
         setStatus("error");
-        onError?.();
+        callbacksRef.current.onError?.();
       }
     };
 
-    // Timeout fallback
-    timeoutId = setTimeout(() => {
-      if (status === "loading") {
-        console.log("⏱️ Timeout");
-        setStatus("timeout");
-        onTimeout?.();
-      }
-    }, TIMEOUT_MS);
-
-    // If already loaded, render immediately
+    // Check if Turnstile is already loaded
     if (window.turnstile) {
       renderWidget();
-    } else {
-      // Set up callback for when script loads
-      window.onTurnstileLoad = () => {
-        console.log("📦 Script loaded via callback");
-        renderWidget();
-      };
-
-      // Check if script exists
-      const existingScript = document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]');
-      
-      if (!existingScript) {
-        const script = document.createElement("script");
-        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad";
-        script.async = true;
-        script.onerror = () => {
-          console.error("❌ Script load failed");
-          setStatus("error");
-          onError?.();
-        };
-        document.head.appendChild(script);
-        console.log("📥 Loading Turnstile script...");
-      } else {
-        // Script exists, poll for window.turnstile
-        checkInterval = setInterval(() => {
-          if (window.turnstile) {
-            clearInterval(checkInterval);
-            renderWidget();
-          }
-        }, 100);
-      }
+      clearTimeout(timeoutId);
+      return;
     }
+
+    // Check if script already exists
+    const existingScript = document.querySelector(`script[src^="${SCRIPT_URL}"]`);
+    
+    if (existingScript) {
+      // Script exists, wait for turnstile to be available
+      const pollInterval = setInterval(() => {
+        if (window.turnstile) {
+          clearInterval(pollInterval);
+          renderWidget();
+        }
+      }, 50);
+      
+      return () => {
+        clearTimeout(timeoutId);
+        clearInterval(pollInterval);
+      };
+    }
+
+    // Load script
+    const script = document.createElement("script");
+    script.src = SCRIPT_URL;
+    script.async = true;
+    
+    script.onload = () => {
+      // Small delay to ensure turnstile object is ready
+      setTimeout(renderWidget, 50);
+    };
+    
+    script.onerror = () => {
+      setStatus("error");
+      callbacksRef.current.onError?.();
+    };
+    
+    document.head.appendChild(script);
 
     return () => {
       clearTimeout(timeoutId);
-      clearInterval(checkInterval);
       if (widgetIdRef.current && window.turnstile) {
         try {
           window.turnstile.remove(widgetIdRef.current);
-        } catch {}
+        } catch {
+          // Ignore cleanup errors
+        }
       }
-      widgetIdRef.current = null;
     };
-  }, [mounted, theme, onVerify, onExpire, onError, onTimeout, status]);
+  }, [mounted, theme]);
 
   if (!mounted) {
-    return <div className="h-[65px]" />;
+    return <div style={{ height: "65px" }} />;
   }
 
   return (
@@ -155,9 +158,8 @@ export default function TurnstileWidget({
       )}
 
       <div 
-        ref={containerRef} 
-        id="turnstile-container"
-        style={{ minHeight: "65px", minWidth: "300px" }}
+        ref={containerRef}
+        style={{ minHeight: status === "loading" ? "0" : "65px" }}
       />
 
       {status === "error" && (
