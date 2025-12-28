@@ -73,8 +73,10 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
               <div className="relative w-full aspect-square overflow-hidden rounded-xl">
                 <Image
                   src="/assets/vasteras-domkyrka.jpg"
-                  alt="Västerås Domkyrka - historisk katedral och ikonisk landmärke i Västerås stad, belägen i centrala Västerås City. Den medeltida domkyrkan är en av Sveriges mest framträdande kyrkobyggnader och symbol för Västerås lokala historia och kulturarv."
+                  alt="Västerås Domkyrka - historisk katedral och ikonisk landmärke i Västerås stad"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>
@@ -90,6 +92,7 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
                   title="Convextra Redovisning - Västerås"
                   scrolling="no"
                   src="https://maps.google.com/maps?q=M%C3%A4larparksv%C3%A4gen%2011%2C%20723%2056%2C%20V%C3%A4ster%C3%A5s&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                  loading="lazy"
                 />
               </div>
               
@@ -97,8 +100,10 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
               <div className="relative w-full aspect-square overflow-hidden rounded-xl">
                 <Image
                   src="/assets/vasteras-stadshus.jpg"
-                  alt="Västerås Stadshus - officiellt kommunhus och arkitektoniskt landmärke i Västerås stad, beläget i hjärtat av Västerås City. Stadhuset är en central byggnad för kommunal förvaltning och ett välkänt kännetecken för Västerås lokala identitet."
+                  alt="Västerås Stadshus - arkitektoniskt landmärke i centrala Västerås"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>

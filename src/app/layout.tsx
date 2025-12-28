@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Cinzel, Playfair_Display } from "next/font/google";
+import { Geist, Cinzel, Playfair_Display, Quicksand } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import StructuredData from "@/components/StructuredData";
@@ -20,6 +20,13 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
+});
+
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -81,7 +88,7 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body
-        className={`${geistSans.variable} ${cinzel.variable} ${playfair.variable} antialiased`}
+        className={`${geistSans.variable} ${cinzel.variable} ${playfair.variable} ${quicksand.variable} antialiased`}
       >
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>

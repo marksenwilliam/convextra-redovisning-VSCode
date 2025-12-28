@@ -11,14 +11,16 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/assets/hero-desktop.jpeg"
-            alt="Business Meeting"
+            alt="Convextra Redovisning - Professionell redovisningsbyrå i Västerås"
             fill
-            className="w-full h-full object-cover object-center scale-105"
+            sizes="100vw"
+            quality={85}
             priority
+            fetchPriority="high"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-black/40"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60 mix-blend-multiply"></div>
-          <div className="bg-gradient-to-b from-black/30 via-transparent to-black/60 absolute top-0 right-0 bottom-0 left-0"></div>
+          {/* Single optimized overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70"></div>
         </div>
 
         {/* Content */}
@@ -55,8 +57,10 @@ export default function Home() {
           <div className="relative w-full h-full">
             <Image
               src="/assets/Untitled design (4).png"
-              alt="Fortnox Partner"
+              alt="Fortnox Partner - Auktoriserad redovisningsbyrå"
               fill
+              sizes="(max-width: 768px) 180px, 450px"
+              priority
               className="object-contain opacity-50 md:opacity-30"
             />
           </div>
