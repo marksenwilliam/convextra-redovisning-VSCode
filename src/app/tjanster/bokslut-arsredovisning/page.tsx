@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import ServiceHero from "@/components/ui/ServiceHero";
 import ContentSection from "@/components/ui/ContentSection";
 import { FeatureCard, BenefitItem, ProcessStep } from "@/components/ui/FeatureCard";
 import CTASection from "@/components/ui/CTASection";
+import RelatedServices from "@/components/ui/RelatedServices";
 import { FileCheck, FileText, Receipt } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -21,8 +23,21 @@ export default function BokslutPage() {
         breadcrumb="Bokslut & Årsredovisning"
       />
 
-      {/* Intro Section */}
-      <section className="bg-white py-16 md:py-24 px-6 md:px-12">
+      {/* Intro Section with Overlapping Image */}
+      <section className="bg-white pt-8 pb-16 md:pt-12 md:pb-24 px-6 md:px-12 relative">
+        {/* Overlapping Image */}
+        <div className="max-w-4xl mx-auto -mt-32 md:-mt-40 mb-12 md:mb-16 relative z-10">
+          <div className="relative aspect-square max-w-[500px] mx-auto rounded-xl overflow-hidden shadow-2xl">
+            <Image
+              src="/assets/årsredovisning.jpg"
+              alt="Bokslut och årsredovisning - Convextra Redovisning"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-gray-600 text-lg leading-relaxed font-light font-geist">
             När året ska avslutas vill du känna dig trygg med att siffrorna stämmer och att
@@ -123,6 +138,8 @@ export default function BokslutPage() {
           </div>
         </div>
       </section>
+
+      <RelatedServices currentServiceSlug="bokslut-arsredovisning" />
 
       <CTASection />
     </main>

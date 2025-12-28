@@ -90,7 +90,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             </div>
 
             {/* Dropdown Content */}
-            <div className="absolute top-full right-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-56 z-50">
+            <div className="absolute top-full right-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-72 z-50">
               <div className="bg-[#1a1a1a] border border-[#cbbba0]/20 flex flex-col p-2 shadow-2xl">
                 {services.map((service) => (
                   <Link

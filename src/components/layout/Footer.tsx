@@ -21,9 +21,10 @@ const services = [
 
 interface FooterProps {
   onOpenModal?: () => void;
+  variant?: 'default' | 'homepage';
 }
 
-export default function Footer({ onOpenModal }: FooterProps) {
+export default function Footer({ onOpenModal, variant = 'default' }: FooterProps) {
   return (
     <footer>
       {/* Contact & Booking Section - Copied from Homepage */}
@@ -135,18 +136,59 @@ export default function Footer({ onOpenModal }: FooterProps) {
           <h3 className="text-xl text-white font-playfair font-medium mb-6">
             Hitta till oss
           </h3>
-          <div className="w-full h-[350px] bg-white/5 rounded-xl overflow-hidden relative grayscale-[0.5] hover:grayscale-0 transition-all duration-500">
-            <iframe
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              title="Convextra Redovisning - Västerås"
-              scrolling="no"
-              src="https://maps.google.com/maps?q=M%C3%A4larparksv%C3%A4gen%2011%2C%20723%2056%2C%20V%C3%A4ster%C3%A5s&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-            />
-          </div>
+          
+          {variant === 'homepage' ? (
+            // Homepage: 3-square grid layout with images and map
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+              {/* Left Image */}
+              <div className="relative w-full aspect-square overflow-hidden rounded-xl">
+                <Image
+                  src="/assets/vasteras-domkyrka.jpg"
+                  alt="Västerås Domkyrka - historisk katedral och ikonisk landmärke i Västerås stad, belägen i centrala Västerås City. Den medeltida domkyrkan är en av Sveriges mest framträdande kyrkobyggnader och symbol för Västerås lokala historia och kulturarv."
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              
+              {/* Center Map */}
+              <div className="relative w-full aspect-square bg-white/5 rounded-xl overflow-hidden grayscale-[0.5] hover:grayscale-0 transition-all duration-500">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  marginHeight={0}
+                  marginWidth={0}
+                  title="Convextra Redovisning - Västerås"
+                  scrolling="no"
+                  src="https://maps.google.com/maps?q=M%C3%A4larparksv%C3%A4gen%2011%2C%20723%2056%2C%20V%C3%A4ster%C3%A5s&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                />
+              </div>
+              
+              {/* Right Image */}
+              <div className="relative w-full aspect-square overflow-hidden rounded-xl">
+                <Image
+                  src="/assets/vasteras-stadshus.jpg"
+                  alt="Västerås Stadshus - officiellt kommunhus och arkitektoniskt landmärke i Västerås stad, beläget i hjärtat av Västerås City. Stadhuset är en central byggnad för kommunal förvaltning och ett välkänt kännetecken för Västerås lokala identitet."
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          ) : (
+            // Default: Full-width map
+            <div className="w-full h-[350px] bg-white/5 rounded-xl overflow-hidden relative grayscale-[0.5] hover:grayscale-0 transition-all duration-500">
+              <iframe
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                title="Convextra Redovisning - Västerås"
+                scrolling="no"
+                src="https://maps.google.com/maps?q=M%C3%A4larparksv%C3%A4gen%2011%2C%20723%2056%2C%20V%C3%A4ster%C3%A5s&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+              />
+            </div>
+          )}
         </div>
       </div>
 

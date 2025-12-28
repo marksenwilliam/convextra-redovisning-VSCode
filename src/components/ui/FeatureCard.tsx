@@ -9,12 +9,12 @@ interface FeatureCardProps {
 
 export function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
-    <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
-      {icon && <div className="mb-4 text-[#8c7b60]">{icon}</div>}
-      <h3 className="text-xl text-[#1a1a1a] mb-4 font-playfair font-medium">
+    <div className="bg-white hover:bg-[#3a3a3a] p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-2 transition-all duration-500 ease-out group h-full">
+      {icon && <div className="mb-4 text-[#8c7b60] group-hover:text-white transition-colors duration-500 ease-out">{icon}</div>}
+      <h3 className="text-xl text-[#1a1a1a] group-hover:text-white mb-4 font-playfair font-medium transition-colors duration-500 ease-out">
         {title}
       </h3>
-      <p className="text-gray-600 text-sm leading-relaxed font-geist font-light">
+      <p className="text-gray-600 group-hover:text-white/80 text-sm leading-relaxed font-geist font-light transition-colors duration-500 ease-out">
         {description}
       </p>
     </div>

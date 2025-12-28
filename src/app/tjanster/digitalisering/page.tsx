@@ -3,6 +3,7 @@ import Image from "next/image";
 import ServiceHero from "@/components/ui/ServiceHero";
 import { FeatureCard, BenefitItem, ProcessStep } from "@/components/ui/FeatureCard";
 import CTASection from "@/components/ui/CTASection";
+import RelatedServices from "@/components/ui/RelatedServices";
 import { Zap, Workflow, BarChart3 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -21,8 +22,21 @@ export default function DigitaliseringPage() {
         breadcrumb="Digitalisering"
       />
 
-      {/* Intro Section */}
-      <section className="bg-white py-16 md:py-24 px-6 md:px-12">
+      {/* Intro Section with Overlapping Image */}
+      <section className="bg-white pt-8 pb-16 md:pt-12 md:pb-24 px-6 md:px-12 relative">
+        {/* Overlapping Image */}
+        <div className="max-w-4xl mx-auto -mt-32 md:-mt-40 mb-12 md:mb-16 relative z-10">
+          <div className="relative aspect-square max-w-[500px] mx-auto rounded-xl overflow-hidden shadow-2xl">
+            <Image
+              src="/assets/digitalisering.jpg"
+              alt="Digitalisering - Convextra Redovisning"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-gray-600 text-lg leading-relaxed font-light font-geist">
             Många företag lägger onödigt mycket tid på manuella moment: kvitton, papper,
@@ -47,7 +61,7 @@ export default function DigitaliseringPage() {
             <div className="bg-white hover:bg-[#3a3a3a] p-8 rounded-lg hover:-translate-y-2 transition-all duration-500 ease-out group h-full shadow-sm">
               <div className="mb-6 h-48 relative rounded-lg overflow-hidden">
                 <Image
-                  src="/assets/digitalisering-1.jpeg"
+                  src="/assets/digital-1.jpeg"
                   alt="Automatiserade kvitto- och fakturaflöden"
                   fill
                   className="object-cover"
@@ -65,7 +79,7 @@ export default function DigitaliseringPage() {
             <div className="bg-white hover:bg-[#3a3a3a] p-8 rounded-lg hover:-translate-y-2 transition-all duration-500 ease-out group h-full shadow-sm">
               <div className="mb-6 h-48 relative rounded-lg overflow-hidden">
                 <Image
-                  src="/assets/digitalisering-2.jpeg"
+                  src="/assets/digital-2.jpeg"
                   alt="Smidigare arbetsflöden och bättre struktur"
                   fill
                   className="object-cover"
@@ -83,7 +97,7 @@ export default function DigitaliseringPage() {
             <div className="bg-white hover:bg-[#3a3a3a] p-8 rounded-lg hover:-translate-y-2 transition-all duration-500 ease-out group h-full shadow-sm">
               <div className="mb-6 h-48 relative rounded-lg overflow-hidden">
                 <Image
-                  src="/assets/digitalisering-3.jpeg"
+                  src="/assets/digital-3.jpeg"
                   alt="Snabbare siffror och bättre rapportering"
                   fill
                   className="object-cover"
@@ -160,6 +174,8 @@ export default function DigitaliseringPage() {
           </div>
         </div>
       </section>
+
+      <RelatedServices currentServiceSlug="digitalisering" />
 
       <CTASection />
     </main>

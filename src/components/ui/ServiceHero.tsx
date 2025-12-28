@@ -18,7 +18,7 @@ export default function ServiceHero({
   return (
     <header className="relative w-full min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden pt-24 bg-[#1a1a1a]">
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 w-full mx-auto">
         {/* Breadcrumb */}
         <nav className="flex items-center justify-center gap-2 text-white/60 text-sm mb-8 font-geist">
           <Link href="/" className="hover:text-white transition-colors">
@@ -32,7 +32,7 @@ export default function ServiceHero({
           <span className="text-white/80">{breadcrumb}</span>
         </nav>
 
-        <h1 className="md:text-5xl lg:text-6xl leading-tight text-3xl font-medium text-white tracking-tight font-aboreto mb-6 drop-shadow-2xl">
+        <h1 className="md:text-5xl lg:text-6xl leading-tight text-3xl font-medium text-white tracking-tight font-aboreto mb-10 drop-shadow-2xl">
           {title}
         </h1>
 

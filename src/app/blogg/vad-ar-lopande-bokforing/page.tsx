@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Vad är löpande bokföring? | Convextra Redovisning",
@@ -28,9 +29,9 @@ export default function VadArLopandeBokforingPage() {
             ← Tillbaka till bloggen
           </Link>
           <div className="flex items-center gap-4 text-xs text-white/50 font-geist mb-6">
-            <span>15 december 2024</span>
+            <span>1 januari 2026</span>
             <span>•</span>
-            <span>8 min läsning</span>
+            <span>2 min läsning</span>
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl text-white font-aboreto font-medium tracking-tight mb-6">
             Vad är löpande bokföring?
@@ -51,6 +52,16 @@ export default function VadArLopandeBokforingPage() {
             AI-verktyg är det fullt möjligt att hantera det själv – men det
             kräver tid, kunskap och disciplin.
           </p>
+
+          {/* Embedded Image */}
+          <div className="relative w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden my-10">
+            <Image
+              src="/assets/blog cover image.jpg"
+              alt="Löpande bokföring - En guide för företagare"
+              fill
+              className="object-cover"
+            />
+          </div>
 
           <h2 className="text-2xl font-playfair font-medium text-[#1a1a1a] mt-12 mb-4">
             Det här ingår i den löpande bokföringen

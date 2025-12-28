@@ -16,6 +16,9 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
 
   // Exclude footer from contact page
   const showFooter = pathname !== "/kontakt";
+  
+  // Homepage gets special footer variant
+  const isHomepage = pathname === "/";
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -24,7 +27,7 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
     <>
       <Navbar onOpenModal={openModal} />
       {children}
-      {showFooter && <Footer onOpenModal={openModal} />}
+      {showFooter && <Footer onOpenModal={openModal} variant={isHomepage ? 'homepage' : 'default'} />}
       <BookingModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );

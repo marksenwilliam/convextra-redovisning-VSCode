@@ -23,13 +23,13 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
-          <h2 className="text-white/80 text-lg md:text-xl lg:text-2xl tracking-widest mb-6 drop-shadow-md font-aboreto font-medium">
+          <h1 className="text-white/80 text-lg md:text-xl lg:text-2xl tracking-widest mb-6 drop-shadow-md font-aboreto font-medium">
             Redovisningsbyrå Västerås
-          </h2>
-
-          <h1 className="md:text-6xl lg:text-7xl leading-tight text-4xl font-medium text-white tracking-tight font-aboreto mb-8 drop-shadow-2xl">
-            Convextra Redovisning AB
           </h1>
+
+          <h2 className="md:text-6xl lg:text-7xl leading-tight text-4xl font-medium text-white tracking-tight font-aboreto mb-8 drop-shadow-2xl">
+            Convextra Redovisning AB
+          </h2>
 
           <div className="flex items-center justify-center gap-5 text-white/80 font-playfair text-lg md:text-xl lg:text-2xl tracking-widest font-light drop-shadow-md">
             <span className="w-12 h-[1px] bg-white/60 inline-block"></span>
@@ -49,8 +49,20 @@ export default function Home() {
       </header>
 
       {/* Engagement & Cards Section */}
-      <section className="bg-[#f5f3ef] py-24 px-6 md:px-12 relative z-20 text-[#1a1a1a]">
-        <div className="max-w-[1200px] mr-auto ml-auto">
+      <section className="bg-[#f5f3ef] py-24 px-6 md:px-12 relative z-20 text-[#1a1a1a] md:overflow-hidden">
+        {/* Fortnox Logo Background */}
+        <div className="absolute -bottom-28 left-1/2 -translate-x-1/2 w-full h-full max-w-[180px] max-h-[180px] z-50 md:z-0 md:top-8 md:bottom-auto md:right-8 md:left-auto md:translate-x-0 md:max-w-[450px] md:max-h-[450px] pointer-events-none">
+          <div className="relative w-full h-full">
+            <Image
+              src="/assets/Untitled design (4).png"
+              alt="Fortnox Partner"
+              fill
+              className="object-contain opacity-50 md:opacity-30"
+            />
+          </div>
+        </div>
+
+        <div className="max-w-[1200px] mr-auto ml-auto relative z-10">
           {/* Header Text */}
           <div className="text-center max-w-5xl mx-auto mb-16">
             <h2 className="md:text-3xl lg:text-4xl uppercase leading-tight text-2xl font-medium text-[#1a1a1a] tracking-wide font-aboreto mb-8">
@@ -125,7 +137,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="relative bg-[#f5f3ef] pt-12 pb-24 px-6 md:px-12 text-[#1a1a1a] overflow-hidden">
+      <section className="relative bg-[#f5f3ef] pt-36 md:pt-12 pb-24 px-6 md:px-12 text-[#1a1a1a] overflow-hidden">
         <div className="max-w-[1400px] mx-auto">
           {/* Section Header */}
           <div className="text-center mb-24">

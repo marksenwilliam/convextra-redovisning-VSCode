@@ -1,7 +1,9 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import ServiceHero from "@/components/ui/ServiceHero";
 import { FeatureCard, BenefitItem, ProcessStep } from "@/components/ui/FeatureCard";
 import CTASection from "@/components/ui/CTASection";
+import RelatedServices from "@/components/ui/RelatedServices";
 import { Monitor, FileBarChart, Shield } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -20,8 +22,21 @@ export default function LopandeBokforingPage() {
         breadcrumb="Löpande bokföring"
       />
 
-      {/* Intro Section */}
-      <section className="bg-white py-16 md:py-24 px-6 md:px-12">
+      {/* Intro Section with Overlapping Image */}
+      <section className="bg-white pt-8 pb-16 md:pt-12 md:pb-24 px-6 md:px-12 relative">
+        {/* Overlapping Image */}
+        <div className="max-w-4xl mx-auto -mt-32 md:-mt-40 mb-12 md:mb-16 relative z-10">
+          <div className="relative aspect-square max-w-[500px] mx-auto rounded-xl overflow-hidden shadow-2xl">
+            <Image
+              src="/assets/bokföring.jpg"
+              alt="Löpande bokföring - Convextra Redovisning"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-gray-600 text-lg leading-relaxed font-light font-geist">
             Vi är din bokföringsbyrå när du behöver löpande redovisning. Löpande bokföring är
@@ -117,6 +132,8 @@ export default function LopandeBokforingPage() {
           </div>
         </div>
       </section>
+
+      <RelatedServices currentServiceSlug="lopande-bokforing" />
 
       <CTASection />
     </main>

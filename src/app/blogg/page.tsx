@@ -16,9 +16,9 @@ const blogPosts = [
     subtitle: "En komplett guide för dig som vill förstå (eller slippa) pappersarbetet",
     excerpt:
       "Löpande bokföring är något alla svenska företag måste sköta, men hur du gör det är upp till dig. Med dagens smarta bokföringsprogram och AI-verktyg är det fullt möjligt att hantera det själv.",
-    date: "2024-12-15",
-    readTime: "8 min",
-    image: "/assets/blog/lopande-bokforing.jpg",
+    date: "2026-01-01",
+    readTime: "2 min",
+    image: "/assets/blog cover image.jpg",
   },
 ];
 
@@ -48,11 +48,12 @@ export default function BloggPage() {
                 className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="relative h-48 bg-gray-200">
-                  <div className="absolute inset-0 bg-[#8c7b60]/20 flex items-center justify-center">
-                    <span className="text-[#8c7b60] font-playfair text-xl">
-                      Convextra
-                    </span>
-                  </div>
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-4 text-xs text-gray-500 font-geist mb-3">
