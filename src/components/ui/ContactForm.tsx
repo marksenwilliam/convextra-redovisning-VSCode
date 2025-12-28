@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 interface ContactFormProps {
   variant?: "light" | "dark";
@@ -10,16 +11,63 @@ interface ContactFormProps {
 export default function ContactForm({ variant = "light", showHeading = false }: ContactFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formLoadTime, setFormLoadTime] = useState<number>(0);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
+  // Record when form loads (for bot detection)
+  useEffect(() => {
+    setFormLoadTime(Date.now());
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
+
+    // Check if Turnstile token is present
+    if (!turnstileToken) {
+      setError("Vänligen verifiera att du inte är en robot.");
+      setIsSubmitting(false);
+      return;
+    }
     
-    // Simulate form submission - replace with actual form handler
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      company: formData.get("company"),
+      message: formData.get("message"),
+      honeypot: formData.get("website"), // Honeypot field
+      formLoadTime: formLoadTime,
+      turnstileToken: turnstileToken,
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Kunde inte skicka meddelandet");
+      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Något gick fel. Försök igen eller kontakta oss direkt.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isDark = variant === "dark";
@@ -80,6 +128,24 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
       )}
 
       <form onSubmit={handleSubmit} className="w-full max-w-md space-y-5">
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-sm">
+            {error}
+          </div>
+        )}
+        
+        {/* Honeypot field - hidden from real users, bots will fill it */}
+        <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+        
         {/* Namn */}
         <div>
           <label className={labelClasses}>
@@ -150,10 +216,24 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
           />
         </div>
 
+        {/* Turnstile Widget */}
+        <div className="flex justify-center">
+          <Turnstile
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+            onSuccess={(token) => setTurnstileToken(token)}
+            onError={() => setError("Verifiering misslyckades. Försök igen.")}
+            onExpire={() => setTurnstileToken(null)}
+            options={{
+              theme: isDark ? "dark" : "light",
+              size: "normal",
+            }}
+          />
+        </div>
+
         {/* Button */}
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !turnstileToken}
           className={buttonClasses}
         >
           {isSubmitting ? "Skickar..." : "Skicka"}

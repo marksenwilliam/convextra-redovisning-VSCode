@@ -16,7 +16,7 @@ export default function LopandeBokforingPage() {
   return (
     <main>
       <ServiceHero
-        title="Hjälp med bokföring"
+        title="LÖPANDE BOKFÖRING"
         subtitle="Vad är löpande bokföring och varför kan det vara värdefullt för dig?"
         backgroundImage="/assets/newgoldengeometry.png"
         breadcrumb="Löpande bokföring"

@@ -17,7 +17,7 @@ export default function RadgivningPage() {
     <main>
       <ServiceHero
         title="Vad gör en redovisningskonsult?"
-        subtitle="Vi hjälper dig navigera lagar, regler, ekonomi och strategiska val så att du kan fatta rätt beslut för ditt företag"
+        subtitle="Vad gör egentligen en bra redovisningskonsult? Läs vidare för att förstå hur vår rådgivning faktiskt kan hjälpa dig"
         backgroundImage="/assets/newgoldengeometry.png"
         breadcrumb="Rådgivning"
       />
