@@ -1,7 +1,6 @@
 "use client";
 
-import Script from "next/script";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface TurnstileWidgetProps {
   onVerify: (token: string) => void;
@@ -18,7 +17,6 @@ declare global {
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
     };
-    onTurnstileLoad?: () => void;
   }
 }
 
@@ -33,107 +31,115 @@ export default function TurnstileWidget({
   theme = "light",
 }: TurnstileWidgetProps) {
   const [status, setStatus] = useState<"loading" | "ready" | "verified" | "error" | "timeout">("loading");
-  const [scriptLoaded, setScriptLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hasRenderedRef = useRef(false);
 
-  // Render the widget when script is loaded
-  const renderWidget = useCallback(() => {
-    if (!window.turnstile || !containerRef.current || hasRenderedRef.current) {
-      return;
-    }
-
-    // Clear any existing content
-    containerRef.current.innerHTML = "";
-    hasRenderedRef.current = true;
-
-    try {
-      widgetIdRef.current = window.turnstile.render(containerRef.current, {
-        sitekey: SITE_KEY,
-        theme: theme,
-        callback: (token: string) => {
-          console.log("✅ Turnstile verified successfully");
-          setStatus("verified");
-          if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-          }
-          onVerify(token);
-        },
-        "error-callback": () => {
-          console.error("❌ Turnstile error");
-          setStatus("error");
-          onError?.();
-        },
-        "expired-callback": () => {
-          console.log("⏰ Turnstile token expired");
-          setStatus("ready");
-          onExpire?.();
-        },
-      });
-      setStatus("ready");
-      console.log("🔄 Turnstile widget rendered");
-    } catch (err) {
-      console.error("❌ Failed to render Turnstile:", err);
-      setStatus("error");
-      onError?.();
-    }
-  }, [theme, onVerify, onExpire, onError]);
-
-  // Handle script load
   useEffect(() => {
-    if (scriptLoaded && window.turnstile) {
-      renderWidget();
-    }
-  }, [scriptLoaded, renderWidget]);
-
-  // Set up timeout fallback
-  useEffect(() => {
-    timeoutRef.current = setTimeout(() => {
-      if (status === "loading" || status === "ready") {
+    // Set up timeout fallback
+    const timeoutId = setTimeout(() => {
+      if (status === "loading") {
         console.log("⏱️ Turnstile timeout - allowing submission anyway");
         setStatus("timeout");
         onTimeout?.();
       }
     }, TIMEOUT_MS);
 
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [status, onTimeout]);
+    // Check if script is already loaded
+    if (window.turnstile) {
+      renderWidget();
+      return () => clearTimeout(timeoutId);
+    }
 
-  // Cleanup on unmount
-  useEffect(() => {
+    // Load the Turnstile script
+    const existingScript = document.querySelector('script[src*="turnstile"]');
+    if (existingScript) {
+      // Script exists, wait for it to load
+      const checkInterval = setInterval(() => {
+        if (window.turnstile) {
+          clearInterval(checkInterval);
+          renderWidget();
+        }
+      }, 100);
+      return () => {
+        clearTimeout(timeoutId);
+        clearInterval(checkInterval);
+      };
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    
+    script.onload = () => {
+      console.log("📦 Turnstile script loaded");
+      // Small delay to ensure turnstile is initialized
+      setTimeout(() => {
+        renderWidget();
+      }, 100);
+    };
+
+    script.onerror = () => {
+      console.error("❌ Failed to load Turnstile script");
+      setStatus("error");
+      onError?.();
+    };
+
+    document.body.appendChild(script);
+
     return () => {
+      clearTimeout(timeoutId);
       if (widgetIdRef.current && window.turnstile) {
         try {
           window.turnstile.remove(widgetIdRef.current);
         } catch (e) {
-          // Ignore cleanup errors
+          // Ignore
         }
       }
     };
-  }, []);
+  }, []); // Empty dependency array - run once on mount
+
+  function renderWidget() {
+    if (!window.turnstile || !containerRef.current || hasRenderedRef.current) {
+      return;
+    }
+
+    hasRenderedRef.current = true;
+    containerRef.current.innerHTML = "";
+
+    try {
+      console.log("🔄 Rendering Turnstile widget...");
+      widgetIdRef.current = window.turnstile.render(containerRef.current, {
+        sitekey: SITE_KEY,
+        theme: theme,
+        callback: (token: string) => {
+          console.log("✅ Turnstile verified");
+          setStatus("verified");
+          onVerify(token);
+        },
+        "error-callback": () => {
+          console.error("❌ Turnstile error callback");
+          setStatus("error");
+          onError?.();
+        },
+        "expired-callback": () => {
+          console.log("⏰ Turnstile expired");
+          setStatus("ready");
+          hasRenderedRef.current = false;
+          onExpire?.();
+        },
+      });
+      setStatus("ready");
+      console.log("✅ Turnstile widget rendered successfully");
+    } catch (err) {
+      console.error("❌ Failed to render Turnstile:", err);
+      setStatus("error");
+      onError?.();
+    }
+  }
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-        strategy="afterInteractive"
-        onLoad={() => {
-          console.log("📦 Turnstile script loaded");
-          setScriptLoaded(true);
-        }}
-        onError={() => {
-          console.error("❌ Failed to load Turnstile script");
-          setStatus("error");
-          onError?.();
-        }}
-      />
-
       {/* Loading state */}
       {status === "loading" && (
         <div className="flex items-center gap-2 py-3 text-sm text-gray-500">
@@ -157,10 +163,10 @@ export default function TurnstileWidget({
         </div>
       )}
 
-      {/* Turnstile container */}
+      {/* Turnstile container - always render but hide when loading */}
       <div
         ref={containerRef}
-        className={status === "loading" ? "hidden" : ""}
+        className={status === "loading" ? "hidden" : "min-h-[65px]"}
       />
 
       {/* Error state */}
