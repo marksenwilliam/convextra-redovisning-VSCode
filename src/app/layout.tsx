@@ -85,6 +85,13 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <head>
+        <script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="078df129-07ea-446c-9fc0-7d79fdaefc2e"
+          data-blockingmode="auto"
+          type="text/javascript"
+        />
         <StructuredData />
       </head>
       <body
