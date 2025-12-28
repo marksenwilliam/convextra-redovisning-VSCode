@@ -62,8 +62,8 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
       {/* Google Maps Section */}
       <div className="border-b border-white/10">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12">
-          <h3 className="text-xl text-white font-playfair font-medium mb-6">
-            Hitta till oss
+          <h3 className="text-xl text-white/70 font-playfair font-medium mb-6">
+            Convextra Redovisning AB — Din redovisningsbyrå i Västerås
           </h3>
           
           {variant === 'homepage' ? (
