@@ -1,11 +1,20 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from "react";
-import { Turnstile } from "@marsidev/react-turnstile";
+import { useState, FormEvent, useEffect, useRef } from "react";
 
 interface ContactFormProps {
   variant?: "light" | "dark";
   showHeading?: boolean;
+}
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (element: string | HTMLElement, options: any) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+  }
 }
 
 export default function ContactForm({ variant = "light", showHeading = false }: ContactFormProps) {
@@ -14,11 +23,50 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
   const [error, setError] = useState<string | null>(null);
   const [formLoadTime, setFormLoadTime] = useState<number>(0);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
 
   // Record when form loads (for bot detection)
   useEffect(() => {
     setFormLoadTime(Date.now());
   }, []);
+
+  // Load Turnstile script and render widget
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
+    
+    script.onload = () => {
+      if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
+        widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+          sitekey: "0x4AAAAAACJamWs0HEPThj6-",
+          theme: variant === "dark" ? "dark" : "light",
+          callback: (token: string) => {
+            setTurnstileToken(token);
+          },
+          "error-callback": () => {
+            setError("Verifiering misslyckades. Försök igen.");
+          },
+          "expired-callback": () => {
+            setTurnstileToken(null);
+          },
+        });
+      }
+    };
+
+    document.head.appendChild(script);
+
+    return () => {
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(widgetIdRef.current);
+      }
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+    };
+  }, [variant]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -217,18 +265,7 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
         </div>
 
         {/* Turnstile Widget */}
-        <div className="flex justify-center">
-          <Turnstile
-            siteKey="0x4AAAAAACJamWs0HEPThj6-"
-            onSuccess={(token) => setTurnstileToken(token)}
-            onError={() => setError("Verifiering misslyckades. Försök igen.")}
-            onExpire={() => setTurnstileToken(null)}
-            options={{
-              theme: isDark ? "dark" : "light",
-              size: "normal",
-            }}
-          />
-        </div>
+        <div ref={turnstileRef} className="flex justify-center"></div>
 
         {/* Button */}
         <button
