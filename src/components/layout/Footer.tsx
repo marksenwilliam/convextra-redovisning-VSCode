@@ -11,6 +11,8 @@ const quickLinks = [
   { name: "Blogg", href: "/blogg" },
   { name: "Kontakt", href: "/kontakt" },
   { name: "Om oss", href: "/om-oss" },
+  { name: "Integritetspolicy", href: "/integritetspolicy" },
+  { name: "Cookies", href: "/cookies" },
 ];
 
 const services = [
