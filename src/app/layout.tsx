@@ -1,36 +1,73 @@
 import type { Metadata } from "next";
-import { Geist, Inter, Cinzel, Quicksand, Playfair_Display } from "next/font/google";
+import { Geist, Cinzel, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
+import StructuredData from "@/components/StructuredData";
 
 const geistSans = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin"],
-});
-
-const quicksand = Quicksand({
-  variable: "--font-quicksand",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Convextra Redovisning AB - Redovisningsbyrå Västerås",
+  title: {
+    default: "Convextra Redovisning AB - Digital Redovisningsbyrå Västerås",
+    template: "%s | Convextra Redovisning",
+  },
   description: "Convextra Redovisning – din digitala redovisningsbyrå i Västerås. Vi hjälper företag med bokföring, löner, bokslut och ekonomisk rådgivning. Boka gratis samtal.",
+  metadataBase: new URL("https://convextraredovisning.se"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "sv_SE",
+    url: "https://convextraredovisning.se",
+    siteName: "Convextra Redovisning AB",
+    title: "Convextra Redovisning AB - Digital Redovisningsbyrå Västerås",
+    description: "Din digitala redovisningsbyrå med personligt engagemang. Bokföring, löner, bokslut och ekonomisk rådgivning i Västerås.",
+    images: [
+      {
+        url: "/assets/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Convextra Redovisning AB - Digital redovisningsbyrå",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Convextra Redovisning AB - Digital Redovisningsbyrå",
+    description: "Din digitala redovisningsbyrå med personligt engagemang i Västerås.",
+    images: ["/assets/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // google: "din-google-verification-kod", // Lägg till när du verifierar i Google Search Console
+  },
 };
 
 export default function RootLayout({
@@ -40,8 +77,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sv">
+      <head>
+        <StructuredData />
+      </head>
       <body
-        className={`${geistSans.variable} ${inter.variable} ${cinzel.variable} ${quicksand.variable} ${playfair.variable} antialiased`}
+        className={`${geistSans.variable} ${cinzel.variable} ${playfair.variable} antialiased`}
       >
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Mail, Phone, Facebook, Linkedin, Instagram } from "lucide-react";
 import ContactForm from "@/components/ui/ContactForm";
+import LazyBookingWidget from "@/components/ui/LazyBookingWidget";
 
 const quickLinks = [
   { name: "Hem", href: "/" },
@@ -50,14 +51,7 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
 
           {/* Right Column: Calendar Widget */}
           <div className="w-full h-full relative">
-            <div className="w-full rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 bg-white">
-              <iframe
-                src="https://api.leadconnectorhq.com/widget/booking/kUXaaSqKbJuIlATWcy7m"
-                style={{ width: "100%", border: "none", overflow: "auto", minHeight: "900px" }}
-                scrolling="yes"
-                id="footer-booking-widget"
-              />
-            </div>
+            <LazyBookingWidget id="footer-booking-widget" minHeight="900px" />
           </div>
         </div>
       </section>
