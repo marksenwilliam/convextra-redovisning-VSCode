@@ -59,9 +59,9 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           <Image
             src="/assets/lying down white.png"
             alt="Convextra Redovisning"
-            width={280}
-            height={70}
-            className="h-16 w-auto object-contain"
+            width={420}
+            height={105}
+            className="h-24 w-auto object-contain"
             priority
           />
         </Link>

@@ -225,9 +225,9 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
             <Image
               src="/assets/lying down white.png"
               alt="Convextra Redovisning AB"
-              width={400}
-              height={100}
-              className="h-20 w-auto object-contain"
+              width={600}
+              height={150}
+              className="h-30 w-auto object-contain"
             />
           </div>
 
