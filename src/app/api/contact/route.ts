@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "Convextra Hemsida <onboarding@resend.dev>",
+      from: "Convextra Hemsida <kontakt@convextraredovisning.se>",
       to: ["info@convextraredovisning.se"],
       subject: `Nytt kontaktformulär: ${name} från ${company}`,
       html: `
