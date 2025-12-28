@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await resend.emails.send({
       from: "Convextra Hemsida <onboarding@resend.dev>",
-      to: ["william@marksendigital.se"], // Must be verified email on Resend free plan
+      to: ["info@convextraredovisning.se"],
       subject: `Nytt kontaktformulär: ${name} från ${company}`,
       html: `
         <h2>Ny förfrågan från hemsidan</h2>
