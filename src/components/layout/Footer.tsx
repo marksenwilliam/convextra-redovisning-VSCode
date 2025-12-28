@@ -223,7 +223,7 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
           {/* Logo */}
           <div className="flex items-center gap-4">
             <Image
-              src="/assets/logo-footer.png"
+              src="/assets/lying down white.png"
               alt="Convextra Redovisning AB"
               width={400}
               height={100}

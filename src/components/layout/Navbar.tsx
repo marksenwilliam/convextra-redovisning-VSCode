@@ -57,7 +57,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
         {/* Logo Area */}
         <Link href="/" className="flex items-center select-none cursor-pointer group">
           <Image
-            src="/assets/logo.png"
+            src="/assets/lying down white.png"
             alt="Convextra Redovisning"
             width={280}
             height={70}
