@@ -30,12 +30,20 @@ export default function TurnstileWidget({
   onTimeout,
   theme = "light",
 }: TurnstileWidgetProps) {
+  const [mounted, setMounted] = useState(false);
   const [status, setStatus] = useState<"loading" | "ready" | "verified" | "error" | "timeout">("loading");
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const hasRenderedRef = useRef(false);
 
+  // Only render on client to avoid hydration mismatch
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     // Set up timeout fallback
     const timeoutId = setTimeout(() => {
       if (status === "loading") {
@@ -97,7 +105,7 @@ export default function TurnstileWidget({
         }
       }
     };
-  }, []); // Empty dependency array - run once on mount
+  }, [mounted]); // Only run when mounted changes
 
   function renderWidget() {
     if (!window.turnstile || !containerRef.current || hasRenderedRef.current) {
@@ -136,6 +144,15 @@ export default function TurnstileWidget({
       setStatus("error");
       onError?.();
     }
+  }
+
+  // Don't render anything until mounted (prevents hydration mismatch)
+  if (!mounted) {
+    return (
+      <div className="flex items-center justify-center py-3">
+        <div className="h-[65px]" />
+      </div>
+    );
   }
 
   return (
