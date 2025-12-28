@@ -56,7 +56,7 @@ export default function Home() {
         <div className="absolute -bottom-28 left-1/2 -translate-x-1/2 w-full h-full max-w-[180px] max-h-[180px] z-50 md:z-0 md:top-8 md:bottom-auto md:right-8 md:left-auto md:translate-x-0 md:max-w-[450px] md:max-h-[450px] pointer-events-none">
           <div className="relative w-full h-full">
             <Image
-              src="/assets/Untitled design (4).png"
+              src="/assets/fortnox-partner.png"
               alt="Fortnox Partner - Auktoriserad redovisningsbyrå"
               fill
               sizes="(max-width: 768px) 180px, 450px"

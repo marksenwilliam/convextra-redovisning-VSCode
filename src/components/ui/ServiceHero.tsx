@@ -36,7 +36,7 @@ export default function ServiceHero({
           {title}
         </h1>
 
-        <p className="text-white/80 text-lg md:text-xl font-light font-quicksand max-w-2xl mx-auto">
+        <p className="text-white/80 text-lg md:text-xl font-light font-quicksand max-w-2xl mx-auto pb-16 md:pb-0">
           {subtitle}
         </p>
       </div>
