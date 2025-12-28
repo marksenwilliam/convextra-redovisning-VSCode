@@ -219,7 +219,7 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
         {/* Turnstile Widget */}
         <div className="flex justify-center">
           <Turnstile
-            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+            siteKey="0x4AAAAAACJamWs0HEPThj6-"
             onSuccess={(token) => setTurnstileToken(token)}
             onError={() => setError("Verifiering misslyckades. Försök igen.")}
             onExpire={() => setTurnstileToken(null)}
