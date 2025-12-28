@@ -67,37 +67,35 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true });
     }
 
-    // Verify Turnstile token
-    if (!turnstileToken) {
-      return NextResponse.json(
-        { error: "Verifiering krävs" },
-        { status: 400 }
+    // Verify Turnstile token (skip if timeout-fallback)
+    if (turnstileToken && turnstileToken !== "timeout-fallback") {
+      const turnstileResponse = await fetch(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            secret: process.env.TURNSTILE_SECRET_KEY,
+            response: turnstileToken,
+            remoteip: ip,
+          }),
+        }
       );
-    }
 
-    const turnstileResponse = await fetch(
-      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          secret: process.env.TURNSTILE_SECRET_KEY,
-          response: turnstileToken,
-          remoteip: ip,
-        }),
+      const turnstileData = await turnstileResponse.json();
+
+      if (!turnstileData.success) {
+        console.log("Turnstile verification failed:", turnstileData);
+        return NextResponse.json(
+          { error: "Verifiering misslyckades. Försök igen." },
+          { status: 400 }
+        );
       }
-    );
-
-    const turnstileData = await turnstileResponse.json();
-
-    if (!turnstileData.success) {
-      return NextResponse.json(
-        { error: "Verifiering misslyckades. Försök igen." },
-        { status: 400 }
-      );
     }
+    // If turnstileToken is "timeout-fallback" or missing, we still allow submission
+    // because honeypot, rate limiting, and time check provide baseline protection
 
     // Validate required fields
     if (!name || !email || !phone || !company || !message) {

@@ -1,20 +1,11 @@
 "use client";
 
-import { useState, FormEvent, useEffect, useRef } from "react";
+import { useState, FormEvent, useEffect } from "react";
+import TurnstileWidget from "./TurnstileWidget";
 
 interface ContactFormProps {
   variant?: "light" | "dark";
   showHeading?: boolean;
-}
-
-declare global {
-  interface Window {
-    turnstile?: {
-      render: (element: string | HTMLElement, options: any) => string;
-      reset: (widgetId: string) => void;
-      remove: (widgetId: string) => void;
-    };
-  }
 }
 
 export default function ContactForm({ variant = "light", showHeading = false }: ContactFormProps) {
@@ -23,58 +14,20 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
   const [error, setError] = useState<string | null>(null);
   const [formLoadTime, setFormLoadTime] = useState<number>(0);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const turnstileRef = useRef<HTMLDivElement>(null);
-  const widgetIdRef = useRef<string | null>(null);
+  const [canSubmitWithoutTurnstile, setCanSubmitWithoutTurnstile] = useState(false);
 
   // Record when form loads (for bot detection)
   useEffect(() => {
     setFormLoadTime(Date.now());
   }, []);
 
-  // Load Turnstile script and render widget
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-    script.async = true;
-    script.defer = true;
-    
-    script.onload = () => {
-      if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
-        widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
-          sitekey: "0x4AAAAAACJamWs0HEPThj6-",
-          theme: variant === "dark" ? "dark" : "light",
-          callback: (token: string) => {
-            setTurnstileToken(token);
-          },
-          "error-callback": () => {
-            setError("Verifiering misslyckades. Försök igen.");
-          },
-          "expired-callback": () => {
-            setTurnstileToken(null);
-          },
-        });
-      }
-    };
-
-    document.head.appendChild(script);
-
-    return () => {
-      if (widgetIdRef.current && window.turnstile) {
-        window.turnstile.remove(widgetIdRef.current);
-      }
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
-  }, [variant]);
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
-    // Check if Turnstile token is present
-    if (!turnstileToken) {
+    // Check if Turnstile token is present (unless timeout/error occurred)
+    if (!turnstileToken && !canSubmitWithoutTurnstile) {
       setError("Vänligen verifiera att du inte är en robot.");
       setIsSubmitting(false);
       return;
@@ -89,7 +42,7 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
       message: formData.get("message"),
       honeypot: formData.get("website"), // Honeypot field
       formLoadTime: formLoadTime,
-      turnstileToken: turnstileToken,
+      turnstileToken: turnstileToken || "timeout-fallback",
     };
 
     try {
@@ -265,12 +218,18 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
         </div>
 
         {/* Turnstile Widget */}
-        <div ref={turnstileRef} className="flex justify-center"></div>
+        <TurnstileWidget
+          theme={isDark ? "dark" : "light"}
+          onVerify={(token) => setTurnstileToken(token)}
+          onExpire={() => setTurnstileToken(null)}
+          onError={() => setCanSubmitWithoutTurnstile(true)}
+          onTimeout={() => setCanSubmitWithoutTurnstile(true)}
+        />
 
         {/* Button */}
         <button
           type="submit"
-          disabled={isSubmitting || !turnstileToken}
+          disabled={isSubmitting || (!turnstileToken && !canSubmitWithoutTurnstile)}
           className={buttonClasses}
         >
           {isSubmitting ? "Skickar..." : "Skicka"}
@@ -278,4 +237,5 @@ export default function ContactForm({ variant = "light", showHeading = false }: 
       </form>
     </div>
   );
+}
 }
