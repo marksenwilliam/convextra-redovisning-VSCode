@@ -99,7 +99,10 @@ export default function KontaktPage() {
                       Öppettider
                     </h3>
                     <p className="text-gray-600 font-geist font-light">
-                      Måndag–Fredag: 09:00–17:00
+                      Måndag–Fredag: 08:00–16:00
+                    </p>
+                    <p className="text-gray-600 font-geist font-light">
+                      Lördag–Söndag: Stängt
                     </p>
                   </div>
                 </div>
