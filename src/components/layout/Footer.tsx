@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Mail, Phone, Facebook, Linkedin, Instagram } from "lucide-react";
+import ContactForm from "@/components/ui/ContactForm";
 
 const quickLinks = [
   { name: "Hem", href: "/" },
@@ -42,75 +43,9 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
               gäller ditt företag.
             </p>
 
-            <form className="w-full max-w-md space-y-5">
-              {/* Namn */}
-              <div>
-                <label className="block text-xs text-gray-500 mb-2 font-geist">
-                  Namn <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Ditt namn"
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded text-sm font-light font-geist text-gray-700 placeholder-gray-400 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 outline-none transition-colors"
-                />
-              </div>
-
-              {/* Mail */}
-              <div>
-                <label className="block text-xs text-gray-500 mb-2 font-geist">
-                  Mail <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="Din mail"
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded text-sm font-light font-geist text-gray-700 placeholder-gray-400 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 outline-none transition-colors"
-                />
-              </div>
-
-              {/* Telefon */}
-              <div>
-                <label className="block text-xs text-gray-500 mb-2 font-geist">
-                  Telefon <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="tel"
-                  placeholder="Din telefon"
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded text-sm font-light font-geist text-gray-700 placeholder-gray-400 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 outline-none transition-colors"
-                />
-              </div>
-
-              {/* Företag */}
-              <div>
-                <label className="block text-xs text-gray-500 mb-2 font-geist">
-                  Företag <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Ditt företag"
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded text-sm font-light font-geist text-gray-700 placeholder-gray-400 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 outline-none transition-colors"
-                />
-              </div>
-
-              {/* Meddelande */}
-              <div>
-                <label className="block text-xs text-gray-500 mb-2 font-geist">
-                  Meddelande <span className="text-red-400">*</span>
-                </label>
-                <textarea
-                  placeholder="Ditt meddelande"
-                  rows={4}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded text-sm font-light font-geist text-gray-700 placeholder-gray-400 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 outline-none transition-colors resize-none"
-                />
-              </div>
-
-              {/* Button */}
-              <button
-                type="submit"
-                className="w-full bg-[#1a1a1a] text-white py-4 mt-2 text-xs uppercase tracking-[0.15em] font-medium hover:bg-[#333] transition-colors font-geist rounded"
-              >
-                Skicka
-              </button>
-            </form>
+            <div className="w-full max-w-md">
+              <ContactForm variant="light" />
+            </div>
           </div>
 
           {/* Right Column: Calendar Widget */}
