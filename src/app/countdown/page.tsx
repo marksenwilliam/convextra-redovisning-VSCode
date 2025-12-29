@@ -1,11 +1,6 @@
+
 "use client";
 import { useEffect, useState } from 'react';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Lansering snart | Convextra Redovisning',
-  robots: { index: false, follow: false },
-};
 
 // CET is UTC+1. Launch at 2026-01-01 00:00:00 CET (2025-12-31T23:00:00Z)
 const LAUNCH_DATE = new Date(Date.UTC(2025, 11, 31, 23, 0, 0));
