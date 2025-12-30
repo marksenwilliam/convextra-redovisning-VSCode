@@ -2,14 +2,22 @@
 "use client";
 import { useEffect, useState } from 'react';
 
-// CET is UTC+1. Launch at 2026-01-01 00:00:00 CET (2025-12-31T23:00:00Z)
-const LAUNCH_DATE = new Date(Date.UTC(2025, 11, 31, 23, 0, 0));
+
+// Launch at 2026-01-01 00:00:00 CET (Swedish time)
+// Use Europe/Stockholm timezone for accuracy
+function getCETLaunchDate() {
+  // This will always be 2026-01-01 00:00:00 in Swedish time
+  // Use toLocaleString to get the correct timestamp in the user's browser
+  return new Date('2026-01-01T00:00:00+01:00');
+}
+
 
 function getTimeLeft() {
   const now = new Date();
-  // Convert now to CET
-  const nowCET = new Date(now.getTime() + (60 - now.getTimezoneOffset()) * 60000);
-  const diff = LAUNCH_DATE.getTime() - nowCET.getTime();
+  // Get the launch date in CET
+  const launchDate = getCETLaunchDate();
+  // Calculate the difference in milliseconds
+  const diff = launchDate.getTime() - now.getTime();
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
