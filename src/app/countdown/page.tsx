@@ -2,9 +2,10 @@
 "use client";
 import { useEffect, useState } from 'react';
 
-// Launch at 2026-01-01 00:00:00 CET (Swedish time)
+// TEST: Launch at 2025-12-30 08:45:00 CET (Swedish time)
+// PRODUCTION: new Date('2026-01-01T00:00:00+01:00')
 function getCETLaunchDate() {
-  return new Date('2026-01-01T00:00:00+01:00');
+  return new Date('2025-12-30T08:45:00+01:00');
 }
 
 function getTimeLeft() {
