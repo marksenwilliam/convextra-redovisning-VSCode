@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// TEST: Launch at 2025-12-30 08:55:00 CET (2025-12-30T07:55:00Z)
-// PRODUCTION: Date.UTC(2025, 11, 31, 23, 0, 0) for 2026-01-01 00:00:00 CET
-const LAUNCH_TIMESTAMP_UTC = Date.UTC(2025, 11, 30, 7, 55, 0); // Months are 0-indexed
+// Launch at 2026-01-01 00:00:00 CET (2025-12-31T23:00:00Z)
+const LAUNCH_TIMESTAMP_UTC = Date.UTC(2025, 11, 31, 23, 0, 0); // Months are 0-indexed
 const BYPASS_KEY = process.env.COUNTDOWN_BYPASS_KEY;
 
 export function middleware(request: NextRequest) {
