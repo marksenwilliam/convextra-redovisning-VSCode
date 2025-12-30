@@ -22,7 +22,7 @@ export function middleware(request: NextRequest) {
   const bypassQuery = searchParams.get('bypass');
 
   // If bypass key provided in URL, set cookie and redirect
-  if (bypassQuery === BYPASS_KEY) {
+  if (bypassQuery && bypassQuery === BYPASS_KEY) {
     const response = NextResponse.redirect(new URL(pathname, request.url));
     response.cookies.set('countdown-bypass', BYPASS_KEY, {
       httpOnly: true,
@@ -31,6 +31,11 @@ export function middleware(request: NextRequest) {
       maxAge: 60 * 60 * 24, // 24 hours
     });
     return response;
+  }
+
+  // Log failed bypass attempts (visible in Vercel function logs)
+  if (bypassQuery && bypassQuery !== BYPASS_KEY) {
+    console.warn(`[Countdown Bypass] Failed attempt from ${request.headers.get('x-forwarded-for') || 'unknown'} at ${new Date().toISOString()}`);
   }
 
   // If valid bypass cookie exists, allow access
@@ -43,8 +48,12 @@ export function middleware(request: NextRequest) {
   const beforeLaunch = nowUTC < LAUNCH_TIMESTAMP_UTC;
 
   if (beforeLaunch) {
-    // Rewrite all requests to /countdown
-    return NextResponse.rewrite(new URL('/countdown', request.url));
+    // Rewrite all requests to /countdown with no-cache headers
+    const response = NextResponse.rewrite(new URL('/countdown', request.url));
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+    return response;
   }
 
   // After launch, allow normal site
