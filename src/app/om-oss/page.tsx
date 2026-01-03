@@ -103,7 +103,7 @@ export default function OmOssPage() {
               <div className="space-y-3">
                 <p className="text-gray-600 text-sm font-geist flex items-center gap-2">
                   <span className="text-[#8c7b60]">📍</span>
-                  Mälarparksvägen 11, 723 56 Västerås
+                  Västerås
                 </p>
                 <p className="text-gray-600 text-sm font-geist flex items-center gap-2">
                   <span className="text-[#8c7b60]">📧</span>

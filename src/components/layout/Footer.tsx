@@ -93,7 +93,7 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
                   marginWidth={0}
                   title="Convextra Redovisning - Västerås"
                   scrolling="no"
-                  src="https://maps.google.com/maps?q=M%C3%A4larparksv%C3%A4gen%2011%2C%20723%2056%2C%20V%C3%A4ster%C3%A5s&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                  src="https://maps.google.com/maps?q=59.6099,16.5448&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
                   loading="lazy"
                 />
               </div>
@@ -121,7 +121,7 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
                 marginWidth={0}
                 title="Convextra Redovisning - Västerås"
                 scrolling="no"
-                src="https://maps.google.com/maps?q=M%C3%A4larparksv%C3%A4gen%2011%2C%20723%2056%2C%20V%C3%A4ster%C3%A5s&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                src="https://maps.google.com/maps?q=59.6099,16.5448&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
               />
             </div>
           )}
@@ -141,7 +141,7 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
                 <div className="flex items-start gap-3 group">
                   <MapPin className="w-4 h-4 text-[#cbbba0] mt-1 flex-shrink-0" />
                   <span className="text-sm font-light text-white/70 font-geist">
-                    Mälarparksvägen 11, 723 56, Västerås
+                    Västerås
                   </span>
                 </div>
                 <div className="flex items-start gap-3 group">

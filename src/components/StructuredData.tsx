@@ -13,16 +13,14 @@ export default function StructuredData() {
     "email": "info@convextraredovisning.se",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Mälarparksvägen 11",
       "addressLocality": "Västerås",
-      "postalCode": "723 56",
       "addressRegion": "Västmanland",
       "addressCountry": "SE"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 59.6162,
-      "longitude": 16.5528
+      "latitude": 59.6099,
+      "longitude": 16.5448
     },
     "openingHoursSpecification": [
       {
