@@ -7,6 +7,21 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 year cache
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'convextraredovisning.se',
+          },
+        ],
+        destination: 'https://www.convextraredovisning.se/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

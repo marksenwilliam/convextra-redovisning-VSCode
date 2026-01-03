@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | Convextra Redovisning",
   },
   description: "Convextra Redovisning – din digitala redovisningsbyrå i Västerås. Vi hjälper företag med bokföring, löner, bokslut och ekonomisk rådgivning. Boka gratis samtal.",
-  metadataBase: new URL("https://convextraredovisning.se"),
+  metadataBase: new URL("https://www.convextraredovisning.se"),
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "sv_SE",
-    url: "https://convextraredovisning.se",
+    url: "https://www.convextraredovisning.se",
     siteName: "Convextra Redovisning AB",
     title: "Convextra Redovisning AB - Digital Redovisningsbyrå Västerås",
     description: "Din digitala redovisningsbyrå med personligt engagemang. Bokföring, löner, bokslut och ekonomisk rådgivning i Västerås.",

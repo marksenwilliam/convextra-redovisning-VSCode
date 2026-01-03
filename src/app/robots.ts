@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/_next/', '/static/'],
     },
-    sitemap: 'https://convextraredovisning.se/sitemap.xml',
+    sitemap: 'https://www.convextraredovisning.se/sitemap.xml',
   };
 }

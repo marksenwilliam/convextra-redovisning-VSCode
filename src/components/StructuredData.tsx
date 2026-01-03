@@ -2,13 +2,13 @@ export default function StructuredData() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://convextraredovisning.se/#organization",
+    "@id": "https://www.convextraredovisning.se/#organization",
     "name": "Convextra Redovisning AB",
     "alternateName": "Convextra",
     "description": "Digital redovisningsbyrå i Västerås. Vi erbjuder löpande bokföring, bokslut, årsredovisning, löneadministration och ekonomisk rådgivning för företag i hela Sverige.",
-    "url": "https://convextraredovisning.se",
-    "logo": "https://convextraredovisning.se/assets/logo.png",
-    "image": "https://convextraredovisning.se/assets/hero-desktop.jpeg",
+    "url": "https://www.convextraredovisning.se",
+    "logo": "https://www.convextraredovisning.se/assets/logo.png",
+    "image": "https://www.convextraredovisning.se/assets/hero-desktop.jpeg",
     "telephone": "+46736277977",
     "email": "info@convextraredovisning.se",
     "address": {
@@ -109,12 +109,12 @@ export default function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://convextraredovisning.se/#website",
-    "url": "https://convextraredovisning.se",
+    "@id": "https://www.convextraredovisning.se/#website",
+    "url": "https://www.convextraredovisning.se",
     "name": "Convextra Redovisning AB",
     "description": "Digital redovisningsbyrå i Västerås med personligt engagemang",
     "publisher": {
-      "@id": "https://convextraredovisning.se/#organization"
+      "@id": "https://www.convextraredovisning.se/#organization"
     },
     "inLanguage": "sv-SE"
   };
