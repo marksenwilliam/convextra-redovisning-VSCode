@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     "redovisning",
     "Västerås",
   ],
+  alternates: {
+    canonical: "/blogg/vad-ar-lopande-bokforing",
+  },
 };
 
 export default function VadArLopandeBokforingPage() {

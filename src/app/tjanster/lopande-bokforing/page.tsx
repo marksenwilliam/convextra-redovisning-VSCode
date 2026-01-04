@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Löpande bokföring | Redovisning företag | Convextra",
   description:
     "Löpande bokföring & redovisning för företag. Digital hantering, tydliga rapporter och trygghet i lagar och regler. Convextra Redovisning i Västerås.",
+  alternates: {
+    canonical: "/tjanster/lopande-bokforing",
+  },
 };
 
 export default function LopandeBokforingPage() {

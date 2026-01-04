@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Löneadministration Västerås | Lönehantering | Convextra",
   description:
     "Löneadministration i Västerås – vi hanterar löner, AGI, semester och rapportering. Trygg lönehantering varje månad. Boka kostnadsfritt samtal.",
+  alternates: {
+    canonical: "/tjanster/loneadministration",
+  },
 };
 
 export default function LoneadministrationPage() {

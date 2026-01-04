@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Redovisningskonsult Västerås | Ekonomisk rådgivning | Convextra",
   description:
     "Redovisningskonsult i Västerås – rådgivning inom ekonomi, skatt och bolagsfrågor. Få hjälp att fatta rätt beslut för ditt företag. Boka gratis samtal.",
+  alternates: {
+    canonical: "/tjanster/radgivning",
+  },
 };
 
 export default function RadgivningPage() {

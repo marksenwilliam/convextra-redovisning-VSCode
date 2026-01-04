@@ -5,6 +5,9 @@ import { ArrowLeft } from "lucide-react";
 export const metadata: Metadata = {
   title: "Cookiepolicy | Convextra Redovisning",
   description: "Läs om hur Convextra Redovisning använder cookies på vår webbplats.",
+  alternates: {
+    canonical: "/cookies",
+  },
 };
 
 export default function CookiesPage() {
@@ -20,11 +23,11 @@ export default function CookiesPage() {
             <ArrowLeft className="w-4 h-4" />
             Tillbaka till startsidan
           </Link>
-          
+
           <h1 className="text-4xl md:text-5xl text-white font-medium font-aboreto tracking-tight mb-6">
             Cookiepolicy
           </h1>
-          
+
           <p className="text-white/70 text-lg font-light font-geist">
             Senast uppdaterad: 28 december 2025
           </p>
@@ -61,7 +64,7 @@ export default function CookiesPage() {
             {/* Types of cookies */}
             <div>
               <h2 className="text-2xl font-medium text-[#1a1a1a] font-aboreto mb-4">Vilka typer av cookies använder vi?</h2>
-              
+
               {/* Necessary cookies */}
               <div className="mb-6">
                 <h3 className="text-xl font-medium text-[#1a1a1a] mb-2">1. Nödvändiga cookies</h3>
@@ -132,7 +135,7 @@ export default function CookiesPage() {
               <p className="leading-relaxed mb-4">
                 Du har rätt att själv välja om du vill acceptera cookies eller inte. När du besöker vår webbplats första gången får du en förfrågan om att acceptera cookies via vår cookie-banner.
               </p>
-              
+
               <h3 className="text-lg font-medium text-[#1a1a1a] mb-2 mt-6">Ändra dina cookie-inställningar</h3>
               <p className="leading-relaxed mb-4">
                 Du kan när som helst ändra dina cookie-inställningar genom att:

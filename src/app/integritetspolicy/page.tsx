@@ -5,6 +5,9 @@ import { ArrowLeft } from "lucide-react";
 export const metadata: Metadata = {
   title: "Integritetspolicy | Convextra Redovisning",
   description: "Läs om hur Convextra Redovisning AB hanterar dina personuppgifter enligt GDPR.",
+  alternates: {
+    canonical: "/integritetspolicy",
+  },
 };
 
 export default function IntegritetspolicyPage() {
@@ -20,11 +23,11 @@ export default function IntegritetspolicyPage() {
             <ArrowLeft className="w-4 h-4" />
             Tillbaka till startsidan
           </Link>
-          
+
           <h1 className="text-4xl md:text-5xl text-white font-medium font-aboreto tracking-tight mb-6">
             Integritetspolicy
           </h1>
-          
+
           <p className="text-white/70 text-lg font-light font-geist">
             Senast uppdaterad: 28 december 2025
           </p>

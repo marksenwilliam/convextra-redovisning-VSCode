@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Blogg | Convextra Redovisning",
   description:
     "Läs våra artiklar om bokföring, redovisning, skatt och företagande. Tips och råd från Convextra Redovisning i Västerås.",
+  alternates: {
+    canonical: "/blogg",
+  },
 };
 
 // Blog data - in a real app this would come from a CMS or database

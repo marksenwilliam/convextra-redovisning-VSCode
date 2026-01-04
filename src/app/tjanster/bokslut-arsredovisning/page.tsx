@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Hjälp med årsredovisning | Bokslut & Deklaration | Convextra",
   description:
     "Behöver du hjälp med årsredovisning? Convextra sköter bokslut, årsredovisning och deklaration – korrekt, i tid och utan stress. Boka gratis samtal.",
+  alternates: {
+    canonical: "/tjanster/bokslut-arsredovisning",
+  },
 };
 
 export default function BokslutPage() {

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Digitalisering företag | Automatisera bokföring | Convextra",
   description:
     "Digitalisering av företagets ekonomi – vi automatiserar kvittohantering, fakturor och rapportering. Spara tid och få bättre kontroll med Convextra.",
+  alternates: {
+    canonical: "/tjanster/digitalisering",
+  },
 };
 
 export default function DigitaliseringPage() {

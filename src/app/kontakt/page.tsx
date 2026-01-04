@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     "boka samtal bokföring",
     "redovisning Västerås kontakt",
   ],
+  alternates: {
+    canonical: "/kontakt",
+  },
 };
 
 export default function KontaktPage() {

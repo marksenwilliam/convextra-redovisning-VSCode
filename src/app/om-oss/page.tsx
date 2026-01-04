@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     "digital redovisning",
     "bokföringsbyrå",
   ],
+  alternates: {
+    canonical: "/om-oss",
+  },
 };
 
 export default function OmOssPage() {
