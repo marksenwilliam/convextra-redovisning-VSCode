@@ -38,8 +38,17 @@ export const metadata: Metadata = {
   description: "Convextra Redovisning – din digitala redovisningsbyrå i Västerås. Vi hjälper företag med bokföring, löner, bokslut och ekonomisk rådgivning. Boka gratis samtal.",
   metadataBase: new URL("https://www.convextraredovisning.se"),
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "https://www.convextraredovisning.se/assets/favicon 48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/assets/favicon 96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/assets/favicon144x144.png", sizes: "144x144", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/favicon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "https://www.convextraredovisning.se/assets/favicon144x144.png", sizes: "144x144", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/favicon.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "https://www.convextraredovisning.se/assets/favicon 48x48.png",
   },
   openGraph: {
     type: "website",
