@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Phone } from "lucide-react";
 
 const services = [
   { name: "Löpande bokföring", href: "/tjanster/lopande-bokforing" },
@@ -47,11 +47,10 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
 
   return (
     <nav
-      className={`z-50 fixed top-0 right-0 left-0 transition-all duration-500 ${
-        isScrolled
+      className={`z-50 fixed top-0 right-0 left-0 transition-all duration-500 ${isScrolled
           ? "bg-[#1a1a1a]/45 backdrop-blur-[30px] border-b border-white/10"
           : "bg-transparent border-b border-transparent"
-      }`}
+        }`}
     >
       <div className="flex h-24 max-w-[1400px] mr-auto ml-auto pr-6 pl-6 items-center justify-between">
         {/* Logo Area */}
@@ -106,8 +105,15 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="hidden md:block">
+        {/* CTA Button & Phone */}
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            href="tel:+46736277977"
+            aria-label="Ring oss"
+            className="inline-flex items-center justify-center w-11 h-11 border border-[#cbbba0] text-[#cbbba0] bg-transparent transition-all duration-700 hover:bg-[#cbbba0] hover:text-[#1a1a1a] hover:-translate-y-1"
+          >
+            <Phone className="w-4 h-4" />
+          </a>
           <button
             onClick={handleCtaClick}
             className="inline-flex items-center justify-center px-8 py-3 border border-[#cbbba0] text-[#cbbba0] bg-transparent text-[0.65rem] uppercase tracking-[0.2em] transition-all duration-700 hover:bg-[#cbbba0] hover:text-[#1a1a1a] hover:-translate-y-1 font-normal font-geist cursor-pointer"
@@ -116,14 +122,23 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="lg:hidden text-[#cbbba0]"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile: Phone & Menu Toggle */}
+        <div className="lg:hidden flex items-center gap-4">
+          <a
+            href="tel:+46736277977"
+            aria-label="Ring oss"
+            className="text-[#cbbba0] transition-colors hover:text-[#cbbba0]/80"
+          >
+            <Phone className="w-6 h-6" />
+          </a>
+          <button
+            className="text-[#cbbba0]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -149,9 +164,8 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               >
                 Tjänster
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-300 ${
-                    servicesOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {servicesOpen && (
