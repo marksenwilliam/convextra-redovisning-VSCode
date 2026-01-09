@@ -39,16 +39,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.convextraredovisning.se"),
   icons: {
     icon: [
-      { url: "https://www.convextraredovisning.se/assets/favicon 48x48.png", sizes: "48x48", type: "image/png" },
-      { url: "https://www.convextraredovisning.se/assets/favicon 96x96.png", sizes: "96x96", type: "image/png" },
-      { url: "https://www.convextraredovisning.se/assets/favicon 144x144.png", sizes: "144x144", type: "image/png" },
-      { url: "https://www.convextraredovisning.se/assets/favicon 512x512.png", sizes: "512x512", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/assets/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/assets/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/assets/favicon-144x144.png", sizes: "144x144", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/assets/favicon-512x512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
-      { url: "https://www.convextraredovisning.se/assets/favicon 144x144.png", sizes: "144x144", type: "image/png" },
-      { url: "https://www.convextraredovisning.se/assets/favicon 512x512.png", sizes: "512x512", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/assets/favicon-144x144.png", sizes: "144x144", type: "image/png" },
+      { url: "https://www.convextraredovisning.se/assets/favicon-512x512.png", sizes: "512x512", type: "image/png" },
     ],
-    shortcut: "https://www.convextraredovisning.se/assets/favicon 48x48.png",
+    shortcut: "https://www.convextraredovisning.se/assets/favicon-48x48.png",
   },
   openGraph: {
     type: "website",

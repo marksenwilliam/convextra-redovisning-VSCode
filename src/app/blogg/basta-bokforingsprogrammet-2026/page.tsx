@@ -51,7 +51,7 @@ const programs = [
         rating: 4.6,
         logo: "Fortnox",
         priceRange: "209 – 919 kr/mån",
-        trialPeriod: "6 månader (för nystartade)",
+        trialPeriod: "6 månader*",
         highlight: {
             title: "Vi rekommenderar Fortnox",
             text: "Som deras samarbetspartner hjälper vi dig att komma igång och maximera värdet av systemet. Nystartade företag får dessutom 6 månader gratis!",
@@ -237,6 +237,7 @@ export default function BastaBokforingsprogrammetPage() {
                                 </tr>
                             </tbody>
                         </table>
+                        <p className="text-xs text-gray-500 mt-3">*6 månader gratis gäller endast nystartade bolag (yngre än 3 mån).</p>
                         <p className="text-xs text-gray-500 mt-3">*6 månaders gratis provperiod gäller endast för nystartade företag (yngre än 3 månader).</p>
                     </div>
 
