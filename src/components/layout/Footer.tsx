@@ -273,7 +273,7 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
 
           {/* Copyright */}
           <div className="text-[0.65rem] text-white/40 font-geist text-center mt-10 pt-8 border-t border-white/10">
-            © 2025 Convextra Redovisning AB. Alla rättigheter förbehållna. &nbsp;|&nbsp; Organisationsnummer: 559560-1773
+            © {new Date().getFullYear()} Convextra Redovisning AB. Alla rättigheter förbehållna. &nbsp;|&nbsp; Organisationsnummer: 559560-1773
           </div>
         </div>
       </div>
