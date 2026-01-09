@@ -5,11 +5,19 @@ import { FeatureCard, BenefitItem, ProcessStep } from "@/components/ui/FeatureCa
 import CTASection from "@/components/ui/CTASection";
 import RelatedServices from "@/components/ui/RelatedServices";
 import { Monitor, FileBarChart, Shield } from "lucide-react";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Löpande bokföring | Redovisning företag | Convextra",
   description:
     "Löpande bokföring & redovisning för företag. Digital hantering, tydliga rapporter och trygghet i lagar och regler. Convextra Redovisning i Västerås.",
+  keywords: [
+    "löpande bokföring",
+    "bokföring företag",
+    "redovisning",
+    "digital bokföring",
+    "bokföringstjänster",
+  ],
   alternates: {
     canonical: "/tjanster/lopande-bokforing",
   },
@@ -18,6 +26,11 @@ export const metadata: Metadata = {
 export default function LopandeBokforingPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[
+        { name: "Hem", url: "/" },
+        { name: "Tjänster", url: "/tjanster" },
+        { name: "Löpande bokföring" }
+      ]} />
       <ServiceHero
         title="LÖPANDE BOKFÖRING"
         subtitle="Vad är löpande bokföring och varför kan det vara värdefullt för dig?"

@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import ArticleSchema from "@/components/seo/ArticleSchema";
+import FAQSchema from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
   title: "Vad är löpande bokföring? | Convextra Redovisning",
@@ -19,9 +22,43 @@ export const metadata: Metadata = {
   },
 };
 
+const faqItems = [
+  {
+    question: "Vad menas med löpande bokföring?",
+    answer: "Löpande bokföring innebär att du registrerar alla affärshändelser (inköp, försäljning, utbetalningar) kontinuerligt under året, inte bara vid bokslut."
+  },
+  {
+    question: "Hur ofta måste man bokföra?",
+    answer: "Enligt bokföringslagen ska affärshändelser bokföras 'så snart det kan ske'. I praktiken bör de flesta företag bokföra minst en gång per månad."
+  },
+  {
+    question: "Vad kostar löpande bokföring hos en byrå?",
+    answer: "Priset varierar beroende på antal transaktioner och komplexitet. För mindre företag kostar det ofta 1 500-4 000 kr/mån. Kontakta oss för en kostnadsfri offert."
+  },
+  {
+    question: "Kan jag sköta löpande bokföring själv?",
+    answer: "Ja, med moderna bokföringsprogram är det fullt möjligt. Men många företagare väljer att outsourca för att spara tid och minska risken för fel."
+  }
+];
+
 export default function VadArLopandeBokforingPage() {
   return (
     <main>
+      {/* Schema Markup */}
+      <BreadcrumbSchema items={[
+        { name: "Hem", url: "/" },
+        { name: "Blogg", url: "/blogg" },
+        { name: "Vad är löpande bokföring?" }
+      ]} />
+      <ArticleSchema
+        headline="Vad är löpande bokföring?"
+        description="Löpande bokföring är något alla svenska företag måste sköta. Läs vår kompletta guide om vad det innebär, hur det fungerar och när du bör ta hjälp."
+        datePublished="2026-01-01"
+        image="/assets/blog cover image.jpg"
+        url="/blogg/vad-ar-lopande-bokforing"
+      />
+      <FAQSchema items={faqItems} />
+
       {/* Article Hero */}
       <header className="bg-[#1a1a1a] pt-32 pb-16 px-6 md:px-12">
         <div className="max-w-[800px] mx-auto">

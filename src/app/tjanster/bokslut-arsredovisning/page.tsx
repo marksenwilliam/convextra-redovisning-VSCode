@@ -6,11 +6,19 @@ import { FeatureCard, BenefitItem, ProcessStep } from "@/components/ui/FeatureCa
 import CTASection from "@/components/ui/CTASection";
 import RelatedServices from "@/components/ui/RelatedServices";
 import { FileCheck, FileText, Receipt } from "lucide-react";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Hjälp med årsredovisning | Bokslut & Deklaration | Convextra",
   description:
     "Behöver du hjälp med årsredovisning? Convextra sköter bokslut, årsredovisning och deklaration – korrekt, i tid och utan stress. Boka gratis samtal.",
+  keywords: [
+    "hjälp med årsredovisning",
+    "årsredovisning",
+    "bokslut",
+    "deklaration företag",
+    "bolagsverket årsredovisning",
+  ],
   alternates: {
     canonical: "/tjanster/bokslut-arsredovisning",
   },
@@ -19,6 +27,11 @@ export const metadata: Metadata = {
 export default function BokslutPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[
+        { name: "Hem", url: "/" },
+        { name: "Tjänster", url: "/tjanster" },
+        { name: "Bokslut & Årsredovisning" }
+      ]} />
       <ServiceHero
         title="Hjälp med årsredovisning"
         subtitle="Vi hjälper dig med din årsredovisning så att du får full kontroll på siffrorna"

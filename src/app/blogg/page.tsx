@@ -14,6 +14,36 @@ export const metadata: Metadata = {
 // Blog data - in a real app this would come from a CMS or database
 const blogPosts = [
   {
+    slug: "basta-bokforingsprogrammet-2026",
+    title: "Bästa bokföringsprogrammet 2026",
+    subtitle: "En komplett jämförelse av de mest populära bokföringsprogrammen",
+    excerpt:
+      "Att välja rätt bokföringsprogram kan spara dig hundratals timmar varje år. Vi jämför Fortnox, Visma, Bokio och fler – läs vår guide och välj rätt.",
+    date: "2026-01-09",
+    readTime: "5 min",
+    image: "/assets/bokföring.jpg",
+  },
+  {
+    slug: "bokforing-aktiebolag",
+    title: "Bokföring aktiebolag – Allt du behöver veta",
+    subtitle: "En komplett guide för dig som driver aktiebolag",
+    excerpt:
+      "Att driva aktiebolag innebär ett större ansvar för bokföring. Lär dig om bokföringslagen, BAS-kontoplanen och vanliga misstag att undvika.",
+    date: "2026-01-09",
+    readTime: "6 min",
+    image: "/assets/årsredovisning.jpg",
+  },
+  {
+    slug: "deklaration-aktiebolag",
+    title: "Deklaration aktiebolag – Komplett guide",
+    subtitle: "Allt du behöver veta om inkomstdeklaration för AB",
+    excerpt:
+      "Varje år ska alla aktiebolag lämna in inkomstdeklaration. Läs om INK2, viktiga datum, avdrag och hur du undviker vanliga misstag.",
+    date: "2026-01-09",
+    readTime: "5 min",
+    image: "/assets/rådgivning.jpg",
+  },
+  {
     slug: "vad-ar-lopande-bokforing",
     title: "Vad är löpande bokföring?",
     subtitle: "En komplett guide för dig som vill förstå (eller slippa) pappersarbetet",

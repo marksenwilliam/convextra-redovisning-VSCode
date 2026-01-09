@@ -4,6 +4,16 @@ import { ArrowDown, SquarePen, Lightbulb, Send, Check } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
+  title: "Redovisningsbyrå Västerås | Bokföring & Ekonomisk Rådgivning | Convextra",
+  description:
+    "Convextra Redovisning – din digitala redovisningsbyrå i Västerås. Vi hjälper företag med bokföring, löner, bokslut och ekonomisk rådgivning. Boka gratis samtal.",
+  keywords: [
+    "redovisningsbyrå västerås",
+    "bokföring västerås",
+    "redovisning företag",
+    "digital redovisningsbyrå",
+    "bokföringsbyrå",
+  ],
   alternates: {
     canonical: "/",
   },

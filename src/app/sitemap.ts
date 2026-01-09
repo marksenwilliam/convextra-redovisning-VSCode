@@ -66,6 +66,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/blogg/basta-bokforingsprogrammet-2026`,
+      lastModified: new Date('2026-01-09'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blogg/bokforing-aktiebolag`,
+      lastModified: new Date('2026-01-09'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blogg/deklaration-aktiebolag`,
+      lastModified: new Date('2026-01-09'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/blogg/vad-ar-lopande-bokforing`,
       lastModified: new Date('2026-01-01'),
       changeFrequency: 'monthly',

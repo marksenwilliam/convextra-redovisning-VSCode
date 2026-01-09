@@ -5,11 +5,19 @@ import { FeatureCard, BenefitItem, ProcessStep } from "@/components/ui/FeatureCa
 import CTASection from "@/components/ui/CTASection";
 import RelatedServices from "@/components/ui/RelatedServices";
 import { Wallet, CalendarDays, FileSpreadsheet } from "lucide-react";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Löneadministration Västerås | Lönehantering | Convextra",
   description:
     "Löneadministration i Västerås – vi hanterar löner, AGI, semester och rapportering. Trygg lönehantering varje månad. Boka kostnadsfritt samtal.",
+  keywords: [
+    "löneadministration",
+    "lönehantering",
+    "löner företag",
+    "arbetsgivardeklaration",
+    "lönebyrå",
+  ],
   alternates: {
     canonical: "/tjanster/loneadministration",
   },
@@ -18,6 +26,11 @@ export const metadata: Metadata = {
 export default function LoneadministrationPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[
+        { name: "Hem", url: "/" },
+        { name: "Tjänster", url: "/tjanster" },
+        { name: "Löneadministration" }
+      ]} />
       <ServiceHero
         title="Hjälp med löner?"
         subtitle="Vi hanterar löner, avtal, frånvaro och rapportering – så att allt blir rätt och skickas in i tid"

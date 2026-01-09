@@ -16,9 +16,54 @@ export const metadata: Metadata = {
   },
 };
 
+// FAQ Schema for Google Rich Snippets
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Arbetar ni endast med företag i Västerås?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nej, vi arbetar helt digitalt och kan hjälpa företag i hela Sverige. Vi har kunder från Malmö till Luleå. Fysiska möten kan ordnas för kunder i Mälardalen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vad kostar det att anlita er?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Priset beror på företagets storlek och vilka tjänster du behöver. Boka ett kostnadsfritt samtal så ger vi dig en offert baserad på dina specifika behov."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vilka bokföringsprogram använder ni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vi arbetar primärt med Fortnox men kan även hantera andra system som Visma och Bokio. Om du redan har ett system kan vi oftast fortsätta arbeta i det."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hur snabbt kan ni komma igång?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Efter att vi har all nödvändig information och tillgång till era system kan vi oftast komma igång inom några dagar. För lönehantering kan uppstarten ta lite längre tid beroende på komplexitet."
+      }
+    }
+  ]
+};
+
 export default function KontaktPage() {
   return (
     <main>
+      {/* FAQ Schema for Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero */}
       <header className="bg-[#1a1a1a] pt-32 pb-20 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto text-center">
@@ -32,8 +77,65 @@ export default function KontaktPage() {
         </div>
       </header>
 
-      {/* Contact Grid */}
-      <section className="bg-white py-20 md:py-32 px-6 md:px-12">
+      {/* Booking Calendar + Contact Form Side by Side */}
+      <section className="bg-[#f5f3ef] py-16 md:py-20 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl text-[#1a1a1a] mb-6 tracking-tight font-aboreto font-medium">
+              Boka ett kostnadsfritt samtal
+            </h2>
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed font-light font-geist max-w-2xl mx-auto">
+              Välj en tid som passar dig så ringer vi upp och diskuterar dina behov.
+              Helt utan förpliktelse.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* GoHighLevel Calendar Widget */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/booking/kUXaaSqKbJuIlATWcy7m"
+                style={{ width: "100%", height: "1100px", border: "none" }}
+                title="Boka möte med Convextra Redovisning"
+                loading="eager"
+              />
+            </div>
+
+            {/* Contact Form */}
+            <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
+              <h3 className="text-2xl md:text-3xl text-[#1a1a1a] mb-6 tracking-tight font-aboreto font-medium">
+                Eller skicka ett meddelande
+              </h3>
+              <ContactForm variant="light" />
+
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <p className="text-gray-500 text-sm font-geist mb-4">
+                  Du kan även nå oss på:
+                </p>
+                <div className="space-y-3">
+                  <a
+                    href="tel:+46736277977"
+                    className="flex items-center gap-3 text-gray-600 hover:text-[#8c7b60] transition-colors font-geist"
+                  >
+                    <Phone className="w-4 h-4" />
+                    (+46) 73-627 79 77
+                  </a>
+                  <a
+                    href="mailto:info@convextraredovisning.se"
+                    className="flex items-center gap-3 text-gray-600 hover:text-[#8c7b60] transition-colors font-geist"
+                  >
+                    <Mail className="w-4 h-4" />
+                    info@convextraredovisning.se
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Info + Map */}
+      <section className="bg-white py-16 md:py-20 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             {/* Contact Info */}
@@ -42,7 +144,7 @@ export default function KontaktPage() {
                 Kontaktuppgifter
               </h2>
 
-              <div className="space-y-6 mb-12">
+              <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-[#f5f3ef] flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-5 h-5 text-[#8c7b60]" />
@@ -108,52 +210,25 @@ export default function KontaktPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Map */}
-              <div className="rounded-lg overflow-hidden h-[300px] bg-gray-100">
-                <iframe
-                  src="https://maps.google.com/maps?q=59.6099,16.5448&t=&z=12&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Convextra Redovisning - Västerås"
-                ></iframe>
-              </div>
             </div>
 
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-2xl md:text-3xl text-[#1a1a1a] mb-8 tracking-tight font-aboreto font-medium">
-                Skicka ett meddelande
-              </h2>
-
-              <ContactForm variant="light" />
+            {/* Map - Updated to show Västerås centered */}
+            <div className="rounded-lg overflow-hidden h-[400px] bg-gray-100 shadow-md">
+              <iframe
+                src="https://www.google.com/maps?q=Västerås,+Sweden&z=12&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Convextra Redovisning - Västerås"
+              ></iframe>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Booking CTA */}
-      <section className="bg-[#f5f3ef] py-20 px-6 md:px-12">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl text-[#1a1a1a] mb-6 tracking-tight font-aboreto font-medium">
-            Föredrar du att prata?
-          </h2>
-          <p className="text-gray-600 text-base md:text-lg leading-relaxed font-light font-geist mb-10">
-            Boka ett kostnadsfritt telefonsamtal så diskuterar vi dina behov och
-            hur vi kan hjälpa dig. Ingen förpliktelse.
-          </p>
-          <a
-            href="tel:+46736277977"
-            className="inline-block px-10 py-4 bg-[#1a1a1a] hover:bg-[#333] text-white text-[0.7rem] uppercase tracking-[0.15em] font-medium rounded transition-colors duration-300 font-geist"
-          >
-            Ring oss: (+46) 73-627 79 77
-          </a>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="bg-white py-20 md:py-32 px-6 md:px-12 border-t border-gray-100">

@@ -5,11 +5,19 @@ import { FeatureCard, BenefitItem, ProcessStep } from "@/components/ui/FeatureCa
 import CTASection from "@/components/ui/CTASection";
 import RelatedServices from "@/components/ui/RelatedServices";
 import { Zap, Workflow, BarChart3 } from "lucide-react";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Digitalisering företag | Automatisera bokföring | Convextra",
   description:
     "Digitalisering av företagets ekonomi – vi automatiserar kvittohantering, fakturor och rapportering. Spara tid och få bättre kontroll med Convextra.",
+  keywords: [
+    "digitalisering företag",
+    "automatisera bokföring",
+    "digital ekonomi",
+    "effektivisering",
+    "bokföringsprogram",
+  ],
   alternates: {
     canonical: "/tjanster/digitalisering",
   },
@@ -18,6 +26,11 @@ export const metadata: Metadata = {
 export default function DigitaliseringPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[
+        { name: "Hem", url: "/" },
+        { name: "Tjänster", url: "/tjanster" },
+        { name: "Digitalisering" }
+      ]} />
       <ServiceHero
         title="Automatisera bokföring?"
         subtitle="Vi hjälper dig effektivisera hela din ekonomihantering med smarta digitala arbetssätt"

@@ -5,11 +5,19 @@ import { FeatureCard, BenefitItem } from "@/components/ui/FeatureCard";
 import CTASection from "@/components/ui/CTASection";
 import RelatedServices from "@/components/ui/RelatedServices";
 import { GraduationCap, Lightbulb, Target, Check } from "lucide-react";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "Redovisningskonsult Västerås | Ekonomisk rådgivning | Convextra",
+  title: "Vad gör en redovisningskonsult? | Ekonomisk rådgivning Västerås | Convextra",
   description:
-    "Redovisningskonsult i Västerås – rådgivning inom ekonomi, skatt och bolagsfrågor. Få hjälp att fatta rätt beslut för ditt företag. Boka gratis samtal.",
+    "Vad gör en redovisningskonsult? Vi hjälper dig med rådgivning inom ekonomi, skatt och bolagsfrågor. Få hjälp att fatta rätt beslut för ditt företag. Boka gratis samtal.",
+  keywords: [
+    "vad gör en redovisningskonsult",
+    "redovisningskonsult",
+    "ekonomisk rådgivning",
+    "skatterådgivning",
+    "bolagsrådgivning",
+  ],
   alternates: {
     canonical: "/tjanster/radgivning",
   },
@@ -18,6 +26,11 @@ export const metadata: Metadata = {
 export default function RadgivningPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[
+        { name: "Hem", url: "/" },
+        { name: "Tjänster", url: "/tjanster" },
+        { name: "Rådgivning" }
+      ]} />
       <ServiceHero
         title="Vad gör en redovisningskonsult?"
         subtitle="Vad gör egentligen en bra redovisningskonsult? Läs vidare för att förstå hur vår rådgivning faktiskt kan hjälpa dig"

@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Våra Tjänster | Convextra Redovisning",
   description:
     "Upptäck våra tjänster inom bokföring, löneadministration, bokslut, rådgivning och digitalisering. Convextra Redovisning i Västerås.",
+  keywords: [
+    "redovisningstjänster",
+    "bokföringstjänster",
+    "lönehantering",
+    "bokslut tjänster",
+    "ekonomitjänster företag",
+  ],
   alternates: {
     canonical: "/tjanster",
   },

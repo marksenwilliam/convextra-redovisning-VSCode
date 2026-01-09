@@ -61,30 +61,58 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
       {/* Dark Footer Section */}
       <div className="bg-[#1a1a1a] text-white">
 
-      {/* Google Maps Section */}
-      <div className="border-b border-white/10">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12">
-          <h3 className="text-xl text-white/70 font-playfair font-medium mb-6">
-            Convextra Redovisning AB — Din redovisningsbyrå i Västerås
-          </h3>
-          
-          {variant === 'homepage' ? (
-            // Homepage: 3-square grid layout with images and map
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-              {/* Left Image */}
-              <div className="relative w-full aspect-square overflow-hidden rounded-xl">
-                <Image
-                  src="/assets/vasteras-domkyrka.jpg"
-                  alt="Västerås Domkyrka - historisk katedral och ikonisk landmärke i Västerås stad"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  loading="lazy"
-                  className="object-cover"
-                />
+        {/* Google Maps Section */}
+        <div className="border-b border-white/10">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12">
+            <h3 className="text-xl text-white/70 font-playfair font-medium mb-6">
+              Convextra Redovisning AB — Din redovisningsbyrå i Västerås
+            </h3>
+
+            {variant === 'homepage' ? (
+              // Homepage: 3-square grid layout with images and map
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+                {/* Left Image */}
+                <div className="relative w-full aspect-square overflow-hidden rounded-xl">
+                  <Image
+                    src="/assets/vasteras-domkyrka.jpg"
+                    alt="Västerås Domkyrka - historisk katedral och ikonisk landmärke i Västerås stad"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Center Map */}
+                <div className="relative w-full aspect-square bg-white/5 rounded-xl overflow-hidden grayscale-[0.5] hover:grayscale-0 transition-all duration-500">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    marginHeight={0}
+                    marginWidth={0}
+                    title="Convextra Redovisning - Västerås"
+                    scrolling="no"
+                    src="https://www.google.com/maps?q=Västerås,+Sweden&z=12&output=embed"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Right Image */}
+                <div className="relative w-full aspect-square overflow-hidden rounded-xl">
+                  <Image
+                    src="/assets/vasteras-stadshus.jpg"
+                    alt="Västerås Stadshus - arkitektoniskt landmärke i centrala Västerås"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
+                    className="object-cover"
+                  />
+                </div>
               </div>
-              
-              {/* Center Map */}
-              <div className="relative w-full aspect-square bg-white/5 rounded-xl overflow-hidden grayscale-[0.5] hover:grayscale-0 transition-all duration-500">
+            ) : (
+              // Default: Full-width map
+              <div className="w-full h-[350px] bg-white/5 rounded-xl overflow-hidden relative grayscale-[0.5] hover:grayscale-0 transition-all duration-500">
                 <iframe
                   width="100%"
                   height="100%"
@@ -93,189 +121,161 @@ export default function Footer({ onOpenModal, variant = 'default' }: FooterProps
                   marginWidth={0}
                   title="Convextra Redovisning - Västerås"
                   scrolling="no"
-                  src="https://maps.google.com/maps?q=59.6099,16.5448&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-                  loading="lazy"
+                  src="https://www.google.com/maps?q=Västerås,+Sweden&z=12&output=embed"
                 />
               </div>
-              
-              {/* Right Image */}
-              <div className="relative w-full aspect-square overflow-hidden rounded-xl">
-                <Image
-                  src="/assets/vasteras-stadshus.jpg"
-                  alt="Västerås Stadshus - arkitektoniskt landmärke i centrala Västerås"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  loading="lazy"
-                  className="object-cover"
-                />
+            )}
+          </div>
+        </div>
+
+        {/* Contact Info & Links Grid */}
+        <div className="border-b border-white/10">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+              {/* Column 1: Contact Info */}
+              <div>
+                <h4 className="text-lg text-white mb-6 font-playfair font-medium tracking-tight">
+                  Kontaktuppgifter
+                </h4>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3 group">
+                    <MapPin className="w-4 h-4 text-[#cbbba0] mt-1 flex-shrink-0" />
+                    <span className="text-sm font-light text-white/70 font-geist">
+                      Västerås
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-3 group">
+                    <Mail className="w-4 h-4 text-[#cbbba0] mt-1 flex-shrink-0" />
+                    <a
+                      href="mailto:info@convextraredovisning.se"
+                      className="text-sm text-white/70 font-light font-geist break-all hover:text-[#cbbba0] transition-colors"
+                    >
+                      info@convextraredovisning.se
+                    </a>
+                  </div>
+                  <div className="flex items-start gap-3 group">
+                    <Phone className="w-4 h-4 text-[#cbbba0] mt-1 flex-shrink-0" />
+                    <a
+                      href="tel:+46736277977"
+                      className="text-sm text-white/70 font-light font-geist hover:text-[#cbbba0] transition-colors"
+                    >
+                      (+46) 73 - 627 79 77
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Column 2: Öppettider */}
+              <div>
+                <h4 className="text-lg text-white mb-6 font-playfair font-medium tracking-tight">
+                  Öppettider
+                </h4>
+                <ul className="space-y-2 text-sm text-white/70 font-light font-geist">
+                  <li>Måndag - Fredag: 08:00 - 16:00</li>
+                  <li>Lördag - Söndag: Stängt</li>
+                </ul>
+              </div>
+
+              {/* Column 3: Snabblänkar */}
+              <div>
+                <h4 className="text-lg text-white mb-6 font-playfair font-medium tracking-tight">
+                  Snabblänkar
+                </h4>
+                <ul className="space-y-2 text-sm text-white/70 font-light font-geist">
+                  {quickLinks.map((link) => (
+                    <li key={link.name}>
+                      <Link
+                        href={link.href}
+                        className="hover:text-[#cbbba0] transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Column 4: Tjänster */}
+              <div>
+                <h4 className="text-lg text-white mb-6 font-playfair font-medium tracking-tight">
+                  Tjänster
+                </h4>
+                <ul className="space-y-2 text-sm text-white/70 font-light font-geist">
+                  {services.map((service) => (
+                    <li key={service.name}>
+                      <Link
+                        href={service.href}
+                        className="hover:text-[#cbbba0] transition-colors"
+                      >
+                        {service.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          ) : (
-            // Default: Full-width map
-            <div className="w-full h-[350px] bg-white/5 rounded-xl overflow-hidden relative grayscale-[0.5] hover:grayscale-0 transition-all duration-500">
-              <iframe
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                marginHeight={0}
-                marginWidth={0}
-                title="Convextra Redovisning - Västerås"
-                scrolling="no"
-                src="https://maps.google.com/maps?q=59.6099,16.5448&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+          </div>
+        </div>
+
+        {/* Bottom Branding Section */}
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            {/* Logo */}
+            <div className="flex items-center gap-4">
+              <Image
+                src="/assets/lying down white.png"
+                alt="Convextra Redovisning AB"
+                width={600}
+                height={150}
+                className="h-30 w-auto object-contain"
               />
             </div>
-          )}
-        </div>
-      </div>
 
-      {/* Contact Info & Links Grid */}
-      <div className="border-b border-white/10">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-            {/* Column 1: Contact Info */}
-            <div>
-              <h4 className="text-lg text-white mb-6 font-playfair font-medium tracking-tight">
-                Kontaktuppgifter
-              </h4>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 group">
-                  <MapPin className="w-4 h-4 text-[#cbbba0] mt-1 flex-shrink-0" />
-                  <span className="text-sm font-light text-white/70 font-geist">
-                    Västerås
-                  </span>
-                </div>
-                <div className="flex items-start gap-3 group">
-                  <Mail className="w-4 h-4 text-[#cbbba0] mt-1 flex-shrink-0" />
-                  <a
-                    href="mailto:info@convextraredovisning.se"
-                    className="text-sm text-white/70 font-light font-geist break-all hover:text-[#cbbba0] transition-colors"
-                  >
-                    info@convextraredovisning.se
-                  </a>
-                </div>
-                <div className="flex items-start gap-3 group">
-                  <Phone className="w-4 h-4 text-[#cbbba0] mt-1 flex-shrink-0" />
-                  <a
-                    href="tel:+46736277977"
-                    className="text-sm text-white/70 font-light font-geist hover:text-[#cbbba0] transition-colors"
-                  >
-                    (+46) 73 - 627 79 77
-                  </a>
-                </div>
-              </div>
+            {/* Social Icons */}
+            <div className="flex text-white/60 gap-5 items-center">
+              <a
+                href="https://www.facebook.com/people/Convextra-Redovisning-AB/61584857013590/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#cbbba0] transition-colors transform hover:-translate-y-0.5 duration-300"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" fill="currentColor" stroke="none" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/convextra-redovisning-ab/posts/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#cbbba0] transition-colors transform hover:-translate-y-0.5 duration-300"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" fill="currentColor" stroke="none" />
+              </a>
+              <a
+                href="https://www.instagram.com/convextraredovisning_ab/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#cbbba0] transition-colors transform hover:-translate-y-0.5 duration-300"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
             </div>
 
-            {/* Column 2: Öppettider */}
-            <div>
-              <h4 className="text-lg text-white mb-6 font-playfair font-medium tracking-tight">
-                Öppettider
-              </h4>
-              <ul className="space-y-2 text-sm text-white/70 font-light font-geist">
-                <li>Måndag - Fredag: 08:00 - 16:00</li>
-                <li>Lördag - Söndag: Stängt</li>
-              </ul>
-            </div>
-
-            {/* Column 3: Snabblänkar */}
-            <div>
-              <h4 className="text-lg text-white mb-6 font-playfair font-medium tracking-tight">
-                Snabblänkar
-              </h4>
-              <ul className="space-y-2 text-sm text-white/70 font-light font-geist">
-                {quickLinks.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-[#cbbba0] transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 4: Tjänster */}
-            <div>
-              <h4 className="text-lg text-white mb-6 font-playfair font-medium tracking-tight">
-                Tjänster
-              </h4>
-              <ul className="space-y-2 text-sm text-white/70 font-light font-geist">
-                {services.map((service) => (
-                  <li key={service.name}>
-                    <Link
-                      href={service.href}
-                      className="hover:text-[#cbbba0] transition-colors"
-                    >
-                      {service.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Branding Section */}
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-          {/* Logo */}
-          <div className="flex items-center gap-4">
-            <Image
-              src="/assets/lying down white.png"
-              alt="Convextra Redovisning AB"
-              width={600}
-              height={150}
-              className="h-30 w-auto object-contain"
-            />
+            {/* CTA Button */}
+            <button
+              onClick={onOpenModal}
+              className="inline-flex items-center justify-center px-8 py-3 border border-[#cbbba0] text-[#cbbba0] bg-transparent text-[0.65rem] uppercase tracking-[0.2em] transition-all duration-500 hover:bg-[#cbbba0] hover:text-[#1a1a1a] font-normal font-geist"
+            >
+              Boka kostnadsfri konsultation
+            </button>
           </div>
 
-          {/* Social Icons */}
-          <div className="flex text-white/60 gap-5 items-center">
-            <a
-              href="https://www.facebook.com/people/Convextra-Redovisning-AB/61584857013590/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#cbbba0] transition-colors transform hover:-translate-y-0.5 duration-300"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-5 h-5" fill="currentColor" stroke="none" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/convextra-redovisning-ab/posts/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#cbbba0] transition-colors transform hover:-translate-y-0.5 duration-300"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" fill="currentColor" stroke="none" />
-            </a>
-            <a
-              href="https://www.instagram.com/convextraredovisning_ab/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#cbbba0] transition-colors transform hover:-translate-y-0.5 duration-300"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
+          {/* Copyright */}
+          <div className="text-[0.65rem] text-white/40 font-geist text-center mt-10 pt-8 border-t border-white/10">
+            © 2025 Convextra Redovisning AB. Alla rättigheter förbehållna. &nbsp;|&nbsp; Organisationsnummer: 559560-1773
           </div>
-
-          {/* CTA Button */}
-          <button
-            onClick={onOpenModal}
-            className="inline-flex items-center justify-center px-8 py-3 border border-[#cbbba0] text-[#cbbba0] bg-transparent text-[0.65rem] uppercase tracking-[0.2em] transition-all duration-500 hover:bg-[#cbbba0] hover:text-[#1a1a1a] font-normal font-geist"
-          >
-            Boka kostnadsfri konsultation
-          </button>
         </div>
-
-        {/* Copyright */}
-        <div className="text-[0.65rem] text-white/40 font-geist text-center mt-10 pt-8 border-t border-white/10">
-          © 2025 Convextra Redovisning AB. Alla rättigheter förbehållna. &nbsp;|&nbsp; Organisationsnummer: 559560-1773
-        </div>
-      </div>
       </div>
     </footer>
   );
